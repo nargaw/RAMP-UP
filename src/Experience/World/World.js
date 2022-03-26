@@ -35,6 +35,7 @@ export default class World
                 this.car.update()
                 this.car.motion()
                 this.car.input()
+                this.car.handleChaseCam()
             }
     }
 }

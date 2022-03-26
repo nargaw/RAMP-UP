@@ -1,8 +1,6 @@
 import * as THREE from 'three'
 import Experience from './Experience.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-import ChaseCam from './World/ChaseCam.js'
-import Car from './World/Car.js'
 
 export default class Camera
 {
@@ -12,10 +10,9 @@ export default class Camera
         this.sizes = this.experience.sizes
         this.scene = this.experience.scene
         this.canvas = this.experience.canvas
-        this.chaseCamera = new ChaseCam()
 
         this.setInstance()
-        this.setControls()
+        //this.setControls()
     }
 
     setInstance()
@@ -39,6 +36,6 @@ export default class Camera
 
     update()
     {
-        this.controls.update()
+        //this.controls.update()
     }
 }

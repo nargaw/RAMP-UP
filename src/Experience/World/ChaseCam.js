@@ -25,7 +25,7 @@ export default class ChaseCam
         this.chaseCam = new THREE.Object3D()
         this.chaseCam.position.set(0, 0, 0)
         this.chaseCamPivot = new THREE.Object3D()
-        this.chaseCamPivot.position.copy(this.currentCam)
+        this.chaseCamPivot.position.copy(this.birdeyeView)
         this.chaseCam.add(this.chaseCamPivot)
         this.scene.add(this.chaseCam)
     }

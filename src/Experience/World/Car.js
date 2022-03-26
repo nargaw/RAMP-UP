@@ -26,8 +26,7 @@ export default class Car
 
     setModel()
     {
-        this.carGroup = new THREE.Group()
-        this.carGroup.add(this.chaseCamera.chaseCam) 
+        this.carGroup = new THREE.Group() 
         this.model = this.resource.scene
         this.model.traverse((child) => {
             if(child.name === 'Audi'){
@@ -60,6 +59,7 @@ export default class Car
             this.frontRightWheel,
             this.backLeftWheel,
             this.backRightWheel,
+            this.chaseCamera.chaseCam
         )
         this.scene.add(this.carGroup)
 
@@ -87,8 +87,9 @@ export default class Car
             new CANNON.Sphere(0.65), 
             new CANNON.Vec3(0, 1.5, 0.0) 
         )
-        this.world.addBody(this.carBody)
         this.carBody.position.copy(this.body.position)
+        this.world.addBody(this.carBody)
+        
         //this.carBody.quaternion.copy(this.body.quaternion)
         this.carBody.angularDamping = 0.9
         this.carBody.allowSleep = false
@@ -107,7 +108,7 @@ export default class Car
         this.objectsToUpdate.push({
             mesh: this.spoiler,
             body: this.carBody
-        }) 
+        })
 
         //Front Left Wheel
         this.flShape = new CANNON.Sphere(0.5)
@@ -123,8 +124,9 @@ export default class Car
         this.flBody.angularDamping = 0.4
         this.flBody.applyLocalForce = 20
         this.flBody.allowSleep = false
-        this.world.addBody(this.flBody)
         this.flBody.position.copy(this.frontLeftWheel.position)
+        this.world.addBody(this.flBody)
+        
         this.objectsToUpdate.push(
             {
                 mesh: this.frontLeftWheel,
@@ -147,8 +149,9 @@ export default class Car
         this.frBody.angularDamping = 0.4
         this.frBody.applyLocalForce = 20
         this.frBody.allowSleep = false
-        this.world.addBody(this.frBody)
         this.frBody.position.copy(this.frontRightWheel.position)
+        this.world.addBody(this.frBody)
+        
         this.objectsToUpdate.push(
             {
                 mesh: this.frontRightWheel,
@@ -192,8 +195,9 @@ export default class Car
         this.brBody.angularDamping = 0.4
         //this.brBody.applyLocalForce = 20
         this.brBody.allowSleep = false
-        this.world.addBody(this.brBody)
         this.brBody.position.copy(this.backRightWheel.position)
+        this.world.addBody(this.brBody)
+        
         this.objectsToUpdate.push(
             {
                 mesh: this.backRightWheel,
@@ -264,7 +268,9 @@ export default class Car
             this.obj.mesh.position.copy(this.obj.body.position)
             this.obj.mesh.quaternion.copy(this.obj.body.quaternion)
         }
-        // this.chaseCamera.update()
+        //console.log(this.chaseCamera.chaseCam.position)
+        //console.log(this.carBody.position)
+        
     }
 
     input()
@@ -287,5 +293,18 @@ export default class Car
         this.constraintFR.axisA.z = this.controls.rightVel
     }
 
-    
+    handleChaseCam()
+    {
+        if(this.carGroup.children.length === 8) {
+            this.camera.instance.lookAt(this.body.position)
+            this.chaseCamera.chaseCam.position.copy(this.body.position)
+            this.chaseCamera.chaseCam.position.copy(this.body.quaternion)
+            this.chaseCamera.chaseCamPivot.getWorldPosition(this.chaseCamera.v)
+            if(this.chaseCamera.v.y < 1){
+                this.chaseCamera.v.y = 1
+            }
+            this.camera.instance.position.lerpVectors(this.camera.instance.position, this.chaseCamera.v, 0.1)
+            this.chaseCamera.chaseCam.position.copy(this.body.position)
+        }  
+    }
 } 
