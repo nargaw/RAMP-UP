@@ -58,9 +58,9 @@ export default class Car
             this.frontLeftWheel, 
             this.frontRightWheel,
             this.backLeftWheel,
-            this.backRightWheel,
-            this.chaseCamera.chaseCam
+            this.backRightWheel,  
         )
+        this.body.add(this.chaseCamera.chaseCam)
         this.scene.add(this.carGroup)
 
         this.setPhysics()
@@ -109,6 +109,11 @@ export default class Car
             mesh: this.spoiler,
             body: this.carBody
         })
+
+        // this.objectsToUpdate.push({
+        //     mesh: this.carGroup,
+        //     body: this.carBody
+        // })
 
         //Front Left Wheel
         this.flShape = new CANNON.Sphere(0.5)
@@ -267,10 +272,7 @@ export default class Car
         for(this.obj of this.objectsToUpdate){
             this.obj.mesh.position.copy(this.obj.body.position)
             this.obj.mesh.quaternion.copy(this.obj.body.quaternion)
-        }
-        //console.log(this.chaseCamera.chaseCam.position)
-        //console.log(this.carBody.position)
-        
+        }   
     }
 
     input()
@@ -295,16 +297,15 @@ export default class Car
 
     handleChaseCam()
     {
-        if(this.carGroup.children.length === 8) {
-            this.camera.instance.lookAt(this.body.position)
-            this.chaseCamera.chaseCam.position.copy(this.body.position)
-            this.chaseCamera.chaseCam.position.copy(this.body.quaternion)
-            this.chaseCamera.chaseCamPivot.getWorldPosition(this.chaseCamera.v)
-            if(this.chaseCamera.v.y < 1){
-                this.chaseCamera.v.y = 1
-            }
-            this.camera.instance.position.lerpVectors(this.camera.instance.position, this.chaseCamera.v, 0.1)
-            this.chaseCamera.chaseCam.position.copy(this.body.position)
-        }  
+        this.camera.instance.lookAt(this.body.position)
+        this.chaseCamera.chaseCam.position.copy(this.body.position)
+        this.chaseCamera.chaseCam.position.copy(this.body.quaternion)
+        this.chaseCamera.chaseCamPivot.getWorldPosition(this.chaseCamera.v)
+        if(this.chaseCamera.v.y < 1)
+        {
+            this.chaseCamera.v.y = 1
+        }
+        this.camera.instance.position.lerpVectors(this.camera.instance.position, this.chaseCamera.v, 0.1)
+        this.chaseCamera.chaseCam.position.copy(this.body.position)
     }
 } 

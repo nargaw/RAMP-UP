@@ -14,7 +14,7 @@ export default class ChaseCam
     views()
     {
         this.v = new THREE.Vector3()
-        this.birdeyeView = new THREE.Vector3(0, 10, 20)
+        this.birdeyeView = new THREE.Vector3(0, 10, 30)
         this.closeupView = new THREE.Vector3(0, 4, 8)
         this.cams = [this.birdeyeView, this.closeupView]
         this.currentCam = this.birdeyeView
