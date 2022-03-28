@@ -5,10 +5,18 @@ import Physics from '../Utils/Physics';
 import CarControls from './CarControls';
 import ChaseCam from './ChaseCam';
 
+let instance = null
 export default class Car
 {
     constructor()
     {
+        // Singleton
+        if(instance)
+        {
+            return instance
+        }
+        instance = this
+
         this.experience = new Experience()
         this.scene = this.experience.scene
         this.camera = this.experience.camera
@@ -67,8 +75,8 @@ export default class Car
         this.setConstraints()
     }
 
-    setPhysics()
-    {  
+        setPhysics()
+    {
         //body
         this.carBodyShape = new CANNON.Box(
             new CANNON.Vec3(1.5, 0.5, 2.95)
@@ -89,8 +97,6 @@ export default class Car
         )
         this.carBody.position.copy(this.body.position)
         this.world.addBody(this.carBody)
-        
-        //this.carBody.quaternion.copy(this.body.quaternion)
         this.carBody.angularDamping = 0.9
         this.carBody.allowSleep = false
         this.objectsToUpdate.push({
@@ -110,10 +116,6 @@ export default class Car
             body: this.carBody
         })
 
-        // this.objectsToUpdate.push({
-        //     mesh: this.carGroup,
-        //     body: this.carBody
-        // })
 
         //Front Left Wheel
         this.flShape = new CANNON.Sphere(0.5)
@@ -124,14 +126,11 @@ export default class Car
             }
         )
         this.flBody.addShape(this.flShape)
-        
-        //this.flBody.quaternion.copy(this.frontLeftWheel.quaternion)
         this.flBody.angularDamping = 0.4
         this.flBody.applyLocalForce = 20
         this.flBody.allowSleep = false
         this.flBody.position.copy(this.frontLeftWheel.position)
         this.world.addBody(this.flBody)
-        
         this.objectsToUpdate.push(
             {
                 mesh: this.frontLeftWheel,
@@ -139,7 +138,6 @@ export default class Car
             }
         )
         
-
         //Front Right Wheel
         this.frShape = new CANNON.Sphere(0.5)
         this.frBody = new CANNON.Body(
@@ -149,14 +147,11 @@ export default class Car
             }
         )
         this.frBody.addShape(this.frShape)
-        
-        //this.frBody.quaternion.copy(this.frontRightWheel.quaternion)
         this.frBody.angularDamping = 0.4
         this.frBody.applyLocalForce = 20
         this.frBody.allowSleep = false
         this.frBody.position.copy(this.frontRightWheel.position)
-        this.world.addBody(this.frBody)
-        
+        this.world.addBody(this.frBody)  
         this.objectsToUpdate.push(
             {
                 mesh: this.frontRightWheel,
@@ -174,9 +169,7 @@ export default class Car
         )
         this.blBody.addShape(this.blShape)
         this.blBody.position.copy(this.backLeftWheel.position)
-        //this.blBody.quaternion.copy(this.backLeftWheel.quaternion)
         this.blBody.angularDamping = 0.4
-        //this.blBody.applyLocalForce = 20
         this.blBody.allowSleep = false
         this.world.addBody(this.blBody)
         this.objectsToUpdate.push(
@@ -195,14 +188,10 @@ export default class Car
             }
         )
         this.brBody.addShape(this.brShape)
-        
-        //this.brBody.quaternion.copy(this.backRightWheel.quaternion)
         this.brBody.angularDamping = 0.4
-        //this.brBody.applyLocalForce = 20
         this.brBody.allowSleep = false
         this.brBody.position.copy(this.backRightWheel.position)
         this.world.addBody(this.brBody)
-        
         this.objectsToUpdate.push(
             {
                 mesh: this.backRightWheel,

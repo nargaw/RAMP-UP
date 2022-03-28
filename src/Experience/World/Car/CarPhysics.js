@@ -1,4 +1,6 @@
 import Physics from "../../Utils/Physics";
+import * as CANNON from 'cannon-es'
+import Car from "../Car";
 
 export default class CarPhysics
 {
@@ -6,6 +8,7 @@ export default class CarPhysics
     {
         this.physics = new Physics()
         this.world = this.physics.world
+        this.car = new Car()
         this.setPhysics()
     }
 
@@ -29,12 +32,12 @@ export default class CarPhysics
             new CANNON.Sphere(0.65), 
             new CANNON.Vec3(0, 1.5, 0.0) 
         )
-        this.carBody.position.copy(this.body.position)
+        this.carBody.position.copy(this.car.body.position)
         this.world.addBody(this.carBody)
         this.carBody.angularDamping = 0.9
         this.carBody.allowSleep = false
         this.objectsToUpdate.push({
-            mesh: this.body,
+            mesh: this.car.body,
             body: this.carBody
         })
         

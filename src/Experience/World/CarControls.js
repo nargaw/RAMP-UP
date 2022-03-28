@@ -1,25 +1,30 @@
 import Controls from "../Utils/Controls"
+import Time from "../Utils/Time"
 
 export default class CarControls extends Controls 
 {
     constructor()
     {
         super()
-
+        this.time = new Time()
+        this.deltaTime = this.time.delta
         this.controls = new Controls()
         this.forwardVel = 0
         this.rightVel = 0
+        this.maxSpeed = 10
         this.thrusting = false   
     }
 
     forward()
     {
         if (this.keyMap['w'] || this.hoverMap['3']  || this.hoverTouch['3']|| this.keyMap['ArrowUp']){
-            if(this.forwardVel < 7.5){
+            if(this.forwardVel < this.maxSpeed){
                 this.forwardVel += 0.5
                 this.thrusting = true
-            } 
+            }
+            
         }
+        console.log(this.forwardVel) 
     }
 
     backward()
