@@ -1,6 +1,6 @@
 import Experience from '../Experience.js'
 import Environment from './Environment.js'
-import Car from './Car.js'
+import Car from './Car/Car.js'
 import Ground from './Ground.js'
 import Buildings from './Buildings.js'
 import TestObjects from './TestObjects.js'

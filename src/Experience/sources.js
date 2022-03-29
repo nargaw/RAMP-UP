@@ -13,16 +13,6 @@ export default [
         ]
     },
     {
-        name: 'grassColorTexture',
-        type: 'texture',
-        path: 'textures/dirt/color.jpg'
-    },
-    {
-        name: 'grassNormalTexture',
-        type: 'texture',
-        path: 'textures/dirt/normal.jpg'
-    },
-    {
         name: 'carModel',
         type: 'dracoModel',
         path: 'models/Car/Audi1.gltf'

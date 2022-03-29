@@ -40,18 +40,17 @@ export default class Buildings
             this.buildingMesh = new THREE.Mesh(this.buildingGeometry, this.buildingMaterial)
             this.buildingMesh.position.set(this.x, this.rand/2, this.z)
             
-            // this.buildingMesh.add(
-            //     new THREE.LineSegments(
-            //         this.buildingGeometry, 
-            //         new THREE.MeshStandardMaterial({
-            //             color: 0x00ffff,
-            //             wireframe: true
-            //         })
-            //     )
-            // )
+            this.buildingMesh.add(
+                new THREE.LineSegments(
+                    this.buildingGeometry, 
+                    new THREE.MeshStandardMaterial({
+                        color: 0x00ffff,
+                        wireframe: true
+                    })
+                )
+            )
 
             this.scene.add(this.buildingMesh)
-
             this.setPhysics()
         }
     }
