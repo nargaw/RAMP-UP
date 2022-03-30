@@ -25,8 +25,8 @@ export default class Physics
             this.defaultMaterial,
             this.defaultMaterial,
             {
-                friction: 0.5,
-                restitution: 0.9
+                friction: 0.9,
+                restitution: 0.7
             }
         )
         this.world.broadphase = new CANNON.SAPBroadphase(this.world)

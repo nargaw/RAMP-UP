@@ -214,7 +214,7 @@ export default class Car
             {
                 pivotA: new CANNON.Vec3(-1.0, 0.45, -1.75),
                 axisA: this.FLaxis,
-                maxForce:15
+                maxForce:25
             }
         )
         this.world.addConstraint(this.constraintFL)
@@ -225,7 +225,7 @@ export default class Car
             {
                 pivotA: new CANNON.Vec3(1.0, 0.45, -1.75),
                 axisA: this.FRaxis,
-                maxForce: 15
+                maxForce: 25
             }
         )
         this.world.addConstraint(this.constraintFR)
@@ -236,7 +236,7 @@ export default class Car
             {
                 pivotA: new CANNON.Vec3(-1.0, 0.45, 1.95),
                 axisA: this.BLaxis,
-                maxForce: 15
+                maxForce: 25
             }
         )
         this.world.addConstraint(this.constraintBL)
@@ -247,7 +247,7 @@ export default class Car
             {
                 pivotA: new CANNON.Vec3(1.0, 0.45, 1.95),
                 axisA: this.BRaxis,
-                maxForce: 15
+                maxForce: 25
             }
         )
         this.world.addConstraint(this.constraintBR)
