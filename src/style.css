@@ -17,3 +17,8 @@ body
     left: 0;
     outline: none;
 }
+
+.buttons{
+    position: absolute;
+    z-index: 1;
+}
