@@ -18,5 +18,34 @@ body
     outline: none;
 }
 
+.buttons{
+    position: absolute;
+    margin: auto;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    color: red;
+}
+
+@keyframes changeColor {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
+
+.button{
+    padding: 10px;
+    border: 2px solid blue;
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+    background: rgba(126, 126, 126, 0.5);
+    animation: changeColor 10s linear infinite;
+}
 
 /*# sourceMappingURL=main.css.map*/
