@@ -19,18 +19,29 @@ export default class CarControls extends Controls
     forward()
     {
         if (this.keyMap['w'] || this.hoverMap['3']  || this.hoverTouch['3']|| this.keyMap['ArrowUp']){
-            if(this.forwardVel < this.maxSpeed){
-                this.forwardVel += (this.speed / this.maxSpeed) * this.deltaTime * 0.15
+            if(this.forwardVel < this.maxSpeed && this.time.delta < 16){
+                this.forwardVel += (this.speed / this.maxSpeed) * this.deltaTime
                 this.thrusting = true
-                //console.log(this.deltaTime)   
+                if(this.rightVel > 0){
+                    this.rightVel -= 0.01
+                }
+                if(this.rightVel < 0){
+                    this.rightVel += 0.01 
+                }  
             }
-            if(this.rightVel > 0){
-                this.rightVel -= 0.01
+            
+            if(this.forwardVel < this.maxSpeed && this.time.delta >= 16){
+                this.forwardVel += (this.speed / this.maxSpeed) * this.deltaTime * 2
+                this.thrusting = true
+                if(this.rightVel > 0){
+                    this.rightVel -= 0.01 * 2
+                }
+                if(this.rightVel < 0){
+                    this.rightVel += 0.01 * 2 
+                }   
             }
-            if(this.rightVel < 0){
-                this.rightVel += 0.01 
-            }
-        }   
+        }
+        //console.log(this.time.delta)   
     }
 
     backward()
