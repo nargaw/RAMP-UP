@@ -26,6 +26,9 @@ body
     transform: translate(-50%, -50%);
     z-index: 1;
     color: red;
+    /* border: 1px solid black; */
+    width: 270px;
+    text-align: center;
 }
 
 @keyframes changeColor {
@@ -44,8 +47,17 @@ body
     border-radius: 50px;
     width: 40px;
     height: 40px;
-    background: rgba(126, 126, 126, 0.5);
+    background: rgba(0, 0, 0, 0.932);
     animation: changeColor 10s linear infinite;
+    margin: 10px;
+}
+
+.fas{
+    font-size: 15px;
+    animation: changeColor 10s linear infinite;
+    color: blue;
+    
+
 }
 
 /*# sourceMappingURL=main.css.map*/
