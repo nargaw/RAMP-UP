@@ -26,8 +26,8 @@ body
     transform: translate(-50%, -50%);
     z-index: 1;
     color: red;
-    /* border: 1px solid black; */
-    width: 270px;
+    border: 1px solid black;
+    width: 350px;
     text-align: center;
 }
 
@@ -49,7 +49,7 @@ body
     height: 40px;
     background: rgba(0, 0, 0, 0.932);
     animation: changeColor 10s linear infinite;
-    margin: 10px;
+    margin: 20px;
 }
 
 .fas{
