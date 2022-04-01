@@ -19,7 +19,7 @@ export default class CarControls extends Controls
     forward()
     {
         if (this.keyMap['w'] || this.hoverMap['3']  || this.hoverTouch['3']|| this.keyMap['ArrowUp']){
-            if(this.forwardVel < this.maxSpeed && this.time.delta < 16){
+            if(this.forwardVel < this.maxSpeed && this.time.delta < 15){
                 this.forwardVel += (this.speed / this.maxSpeed) * this.deltaTime
                 this.thrusting = true
                 if(this.rightVel > 0){
@@ -30,12 +30,13 @@ export default class CarControls extends Controls
                 }
                 if(this.rightVel > 0 && this.rightVel < 0.01){
                     this.rightVel = 0
-                }  
+                }
+                console.log('low')  
             }
             
-            if(this.forwardVel < this.maxSpeed && this.time.delta >= 16){
-                this.maxSpeed = 50
-                this.forwardVel += (this.speed / this.maxSpeed) * this.deltaTime * 3
+            if(this.forwardVel < this.maxSpeed && this.time.delta >= 15){
+                this.maxSpeed = 30
+                this.forwardVel += (this.speed / this.maxSpeed) * this.deltaTime * 2
                 this.thrusting = true
                 if(this.rightVel > 0){
                     this.rightVel -= 0.01
@@ -45,7 +46,8 @@ export default class CarControls extends Controls
                 }
                 if(this.rightVel > 0 && this.rightVel < 0.01){
                     this.rightVel = 0
-                }    
+                }
+                console.log('High')    
             }
         }
     }
