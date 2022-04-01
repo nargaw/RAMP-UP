@@ -30,7 +30,6 @@ body
     /* border: 1px solid black; */
     width: 400px;
     text-align: center;
-    overflow: hidden;
 }
 
 @keyframes changeColor {
@@ -52,7 +51,6 @@ body
     background: rgba(0, 0, 0, 0.932);
     animation: changeColor 10s linear infinite;
     margin: 15px;
-    overflow: hidden;
 }
 
 .fas{

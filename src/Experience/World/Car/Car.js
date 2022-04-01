@@ -70,7 +70,7 @@ export default class Car
         )
         this.body.add(this.chaseCamera.chaseCam)
         this.scene.add(this.carGroup)
-
+        this.carGroup.castShadow = true
         this.setPhysics()
         this.setConstraints()
     }
