@@ -34,7 +34,7 @@ export default class TestObjects
 
     setObjectMesh()
     {
-        for(let i = 0; i < 5; i++)
+        for(let i = 0; i < 25; i++)
         {
             this.object = new THREE.Mesh(
                 this.objectGeometry, 
@@ -59,7 +59,7 @@ export default class TestObjects
         this.objectShape = new CANNON.Sphere(1)
             this.objectBody = new CANNON.Body
             ({
-                mass: 1,
+                mass: 0.1,
                 material: this.physics.defaultMaterial
             })
             this.objectBody.addShape(this.objectShape)

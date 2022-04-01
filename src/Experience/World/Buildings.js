@@ -33,7 +33,7 @@ export default class Buildings
     {
         for(let i = 0; i < 50; i++){
             const angle = Math.random() * Math.PI * 2
-            const radius = 10 + Math.random() * 400
+            const radius = 50 + Math.random() * 400
             this.x = Math.cos(angle) * radius
             this.z = Math.sin(angle) * radius
 

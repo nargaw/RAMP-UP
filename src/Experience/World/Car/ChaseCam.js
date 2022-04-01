@@ -7,6 +7,14 @@ export default class ChaseCam
     {
         this.experience = new Experience()
         this.scene = this.experience.scene
+        this.debug = this.experience.debug
+
+        //debug
+        if(this.debug.active)
+        {
+            this.debugFolder = this.debug.ui.addFolder('Camera')
+        }
+
         this.views()
         this.chasecamera()      
     }
@@ -14,10 +22,20 @@ export default class ChaseCam
     views()
     {
         this.v = new THREE.Vector3()
-        this.birdeyeView = new THREE.Vector3(0, 10, 30)
+        this.birdeyeView = new THREE.Vector3(0, 5, 20)
         this.closeupView = new THREE.Vector3(0, 4, 8)
         this.cams = [this.birdeyeView, this.closeupView]
         this.currentCam = this.birdeyeView
+
+        if(this.debug.active)
+        {
+            this.debugFolder
+                .add(this.currentCam, 'x')
+                .name('CameraX')
+                .min(-5)
+                .max(5)
+                .step(0.001)
+        }
     }
 
     chasecamera()
