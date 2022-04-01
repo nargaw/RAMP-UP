@@ -22,7 +22,7 @@ body
 .buttons{
     position: absolute;
     margin: auto;
-    top: 90%;
+    top: 89%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
@@ -30,6 +30,19 @@ body
     /* border: 1px solid black; */
     width: 400px;
     text-align: center;
+}
+
+.keyboard{
+   position: absolute;
+   margin: auto;
+   top: 97%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   font-family: 'PT Sans', sans-serif;
+   color: white;
+   font-size: 15px;
+   width: 400px;
+   text-align: center;
 }
 
 @keyframes changeColor {

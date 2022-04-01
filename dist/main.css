@@ -32,6 +32,19 @@ body
     text-align: center;
 }
 
+.keyboard{
+   position: absolute;
+   margin: auto;
+   top: 97%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   font-family: 'PT Sans', sans-serif;
+   color: white;
+   font-size: 15px;
+   width: 400px;
+   text-align: center;
+}
+
 @keyframes changeColor {
     0% {
         filter: hue-rotate(0deg);
