@@ -8,6 +8,7 @@ html,
 body
 {
     overflow: hidden;
+    background-color: black;
 }
 
 .webgl
@@ -26,9 +27,10 @@ body
     transform: translate(-50%, -50%);
     z-index: 1;
     color: red;
-    border: 1px solid black;
-    width: 350px;
+    /* border: 1px solid black; */
+    width: 400px;
     text-align: center;
+    overflow: hidden;
 }
 
 @keyframes changeColor {
@@ -45,17 +47,17 @@ body
     padding: 10px;
     border: 2px solid blue;
     border-radius: 50px;
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     background: rgba(0, 0, 0, 0.932);
     animation: changeColor 10s linear infinite;
-    margin: 20px;
+    margin: 15px;
+    overflow: hidden;
 }
 
 .fas{
-    font-size: 15px;
+    font-size: 25px;
     animation: changeColor 10s linear infinite;
-    color: blue;
-    
+    color: blue;    
 
 }

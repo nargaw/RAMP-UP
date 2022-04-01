@@ -11,7 +11,7 @@ export default class CarControls extends Controls
         this.controls = new Controls()
         this.forwardVel = 0
         this.rightVel = 0
-        this.maxSpeed = 20
+        this.maxSpeed = 15
         this.speed = 0.5
         this.thrusting = false   
     }
@@ -27,11 +27,14 @@ export default class CarControls extends Controls
                 }
                 if(this.rightVel < 0){
                     this.rightVel += 0.01 
+                }
+                if(this.rightVel > 0 && this.rightVel < 0.01){
+                    this.rightVel = 0
                 }  
             }
             
             if(this.forwardVel < this.maxSpeed && this.time.delta >= 16){
-                this.maxSpeed = 40
+                this.maxSpeed = 30
                 this.forwardVel += (this.speed / this.maxSpeed) * this.deltaTime * 2
                 this.thrusting = true
                 if(this.rightVel > 0){
@@ -39,10 +42,13 @@ export default class CarControls extends Controls
                 }
                 if(this.rightVel < 0){
                     this.rightVel += 0.01 * 2 
-                }   
+                }
+                if(this.rightVel > 0 && this.rightVel < 0.01){
+                    this.rightVel = 0
+                }    
             }
         }
-        //console.log(this.time.delta)   
+        console.log(this.rightVel)   
     }
 
     backward()
@@ -59,7 +65,7 @@ export default class CarControls extends Controls
     {
         if (this.keyMap['a'] || this.hoverMap['1'] || this.hoverTouch['1']|| this.keyMap['ArrowLeft']){
             if(this.rightVel > -0.75){
-                this.rightVel -= (0.010/0.75) * this.deltaTime * 0.12
+                this.rightVel -= (0.010/1.15) * this.deltaTime * 0.12
             } 
         }
     }
@@ -68,7 +74,7 @@ export default class CarControls extends Controls
     {
        if (this.keyMap['d'] || this.hoverMap['2'] || this.hoverTouch['2']|| this.keyMap['ArrowRight']){
             if(this.rightVel < 0.75){
-                this.rightVel += (0.010/0.75) * this.deltaTime * 0.12
+                this.rightVel += (0.010/1.15) * this.deltaTime * 0.15
             } 
         } 
     }
