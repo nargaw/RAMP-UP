@@ -27,6 +27,8 @@ export default class Car
         this.debug = this.experience.debug
         this.controls = new CarControls()
         this.chaseCamera = new ChaseCam()
+        
+        
         this.objectsToUpdate = []
         this.resource = this.resources.items.carModel
         this.setModel()
@@ -37,6 +39,10 @@ export default class Car
         this.carGroup = new THREE.Group() 
         this.model = this.resource.scene
         this.model.traverse((child) => {
+            if (child.isMesh)
+            {
+                child.castShadow = true
+            }
             if(child.name === 'Audi'){
                 this.body = child    
             }
@@ -68,9 +74,10 @@ export default class Car
             this.backLeftWheel,
             this.backRightWheel,  
         )
+        
+        
         this.body.add(this.chaseCamera.chaseCam)
         this.scene.add(this.carGroup)
-        this.carGroup.castShadow = true
         this.setPhysics()
         this.setConstraints()
     }

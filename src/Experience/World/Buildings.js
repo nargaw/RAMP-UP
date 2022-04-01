@@ -49,7 +49,7 @@ export default class Buildings
                     })
                 )
             )
-            this.buildingMesh.castShadow = true
+            //this.buildingMesh.castShadow = true
             this.scene.add(this.buildingMesh)
             this.setPhysics()
         }
