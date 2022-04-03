@@ -30,8 +30,7 @@ export default class CarControls extends Controls
                 }
                 if(this.rightVel > 0 && this.rightVel < 0.01){
                     this.rightVel = 0
-                }
-                console.log('low')  
+                }  
             }
             
             if(this.forwardVel < this.maxSpeed && this.time.delta >= 15){
@@ -46,8 +45,7 @@ export default class CarControls extends Controls
                 }
                 if(this.rightVel > 0 && this.rightVel < 0.01){
                     this.rightVel = 0
-                }
-                console.log('High')    
+                }  
             }
         }
     }

@@ -2,6 +2,8 @@ import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import EventEmitter from './EventEmitter.js'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
+import gsap from 'gsap'
+import Experience from '../Experience.js'
 
 export default class Resources extends EventEmitter
 {
@@ -9,8 +11,14 @@ export default class Resources extends EventEmitter
     {
         super()
 
+        this.experience = new Experience()
+        this.loading = this.experience.loading
+        this.overlayMaterial = this.loading.overlayMaterial
+        this.loadingElement = document.querySelector('.percent')
+        this.buttonsElement = document.querySelector('.buttons')
+        this.keyboardElement = document.querySelector('.keyboard')
         this.sources = sources
-
+        
         this.items = {}
         this.toLoad = this.sources.length
         this.loaded = 0
@@ -89,10 +97,32 @@ export default class Resources extends EventEmitter
         this.items[source.name] = file
 
         this.loaded++
+        this.loadedPercent = this.loaded * 100 - 100
+        this.toLoadPercent = this.toLoad * 100 - 100
+        this.delay = 4000
+
+        this.setNum = (currentNum, newNum) => {
+            if(currentNum === newNum) return
+            this.updateSpeed = this.delay / Math.abs(currentNum - newNum)
+            this.count = currentNum > newNum ? -1 : 1
+            this.timer = setInterval(() => {
+                currentNum += this.count
+                document.querySelector('.percent').innerHTML = "Loading " + currentNum + "%"
+                if(currentNum === newNum) clearInterval(this.timer)
+            }, this.updateSpeed)
+        }
+        this.setNum(this.loadedPercent, this.toLoadPercent)
 
         if(this.loaded === this.toLoad)
         {
             this.trigger('ready')
+            window.setTimeout(() => {
+                gsap.to(this.overlayMaterial.uniforms.uAlpha, {duration: 4, value: 0})
+                this.loadingElement.classList.add('ended')
+                this.buttonsElement.classList.remove('off')
+                this.keyboardElement.classList.remove('off')
+                this.loadingElement.innerHTML = 'Loaded'
+            }, 4000)     
         }
     }
 }

@@ -17,7 +17,7 @@ export default class Environment
         }
 
         this.setSunLight()
-        this.setSunLightHelper()
+        //this.setSunLightHelper()
         this.setEnvironmentMap()
     }
 
