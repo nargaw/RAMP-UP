@@ -118,12 +118,11 @@ export default class Resources extends EventEmitter
             this.trigger('ready')
             window.setTimeout(() => {
                 gsap.to(this.overlayMaterial.uniforms.uAlpha, {duration: 4, value: 0})
+                this.loadingElement.innerHTML = "Loaded"
                 this.loadingElement.classList.add('ended')
                 this.buttonsElement.classList.remove('off')
                 this.keyboardElement.classList.remove('off')
-                this.loadingElement.innerHTML = 'Loaded'
-            }, 4000) 
-                
+            }, 4000)     
         }
     }
 }

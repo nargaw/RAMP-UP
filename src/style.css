@@ -36,9 +36,14 @@ body
 
 .percent.ended
 {
-    transform: scale(0);
-    transform-origin: 100% 0;
-    transition: transform 0.25s ease-in-out;
+    -webkit-animation: 2.5s ease 0s normal forwards 1 fadeout;
+    animation: 2.5s ease 0s normal forwards 1 fadeout;
+}
+
+@keyframes fadeout {
+    0% {opacity: 1;}
+    66% {opacity: 1;}
+    100% {opacity: 0;}
 }
 
 .webgl
