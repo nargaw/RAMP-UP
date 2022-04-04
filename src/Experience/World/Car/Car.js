@@ -4,6 +4,7 @@ import * as CANNON from 'cannon-es'
 import Physics from '../../Utils/Physics';
 import CarControls from './CarControls';
 import ChaseCam from './ChaseCam'
+import CustomShader from './CustomShader'
 
 let instance = null
 export default class Car
@@ -27,6 +28,7 @@ export default class Car
         this.debug = this.experience.debug
         this.controls = new CarControls()
         this.chaseCamera = new ChaseCam()
+        //this.customShader = new CustomShader()
         
         
         this.objectsToUpdate = []
@@ -177,6 +179,7 @@ export default class Car
         this.blBody.addShape(this.blShape)
         this.blBody.position.copy(this.backLeftWheel.position)
         this.blBody.angularDamping = 0.4
+        this.blBody.applyLocalForce = 20
         this.blBody.allowSleep = false
         this.world.addBody(this.blBody)
         this.objectsToUpdate.push(
@@ -196,6 +199,7 @@ export default class Car
         )
         this.brBody.addShape(this.brShape)
         this.brBody.angularDamping = 0.4
+        this.brBody.applyLocalForce = 20
         this.brBody.allowSleep = false
         this.brBody.position.copy(this.backRightWheel.position)
         this.world.addBody(this.brBody)
