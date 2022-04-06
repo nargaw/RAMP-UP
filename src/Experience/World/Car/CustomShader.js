@@ -13,7 +13,7 @@ export default class CustomShader
 
         this.setTailLightGeometry()
         this.setTailLightMaterial()
-        this.setRightTailLight()
+        //this.setRightTailLight()
         //this.setLeftTailLight()
     }
 
@@ -35,9 +35,6 @@ export default class CustomShader
     setRightTailLight()
     {
         this.rightTailLight = new THREE.Mesh(this.tailLightGeometry, this.setTailLightMaterial)
-        if (this.carGroup){
-            this.carGroup.add(this.rightTailLight)
-        }
-        
+        //this.scene.add(this.rightTailLight) 
     }
 }

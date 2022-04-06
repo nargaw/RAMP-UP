@@ -2,9 +2,9 @@ import * as THREE from 'three'
 import Experience from '../../Experience';
 import * as CANNON from 'cannon-es'
 import Physics from '../../Utils/Physics';
+import CarPhysics from './CarPhysics';
 import CarControls from './CarControls';
 import ChaseCam from './ChaseCam'
-import CustomShader from './CustomShader'
 
 let instance = null
 export default class Car
@@ -21,19 +21,24 @@ export default class Car
         this.experience = new Experience()
         this.scene = this.experience.scene
         this.camera = this.experience.camera
+
         this.physics = new Physics()
         this.world = this.physics.world
+        this.carPhysics = new CarPhysics()
+        
         this.resources = this.experience.resources
+        this.resource = this.resources.items.carModel
+
         this.time = this.experience.time
         this.debug = this.experience.debug
+
         this.controls = new CarControls()
         this.chaseCamera = new ChaseCam()
-        //this.customShader = new CustomShader()
         
+        this.objectsToUpdate = this.carPhysics.objectsToUpdate
         
-        this.objectsToUpdate = []
-        this.resource = this.resources.items.carModel
         this.setModel()
+        
     }
 
     setModel()
@@ -77,138 +82,16 @@ export default class Car
             this.backRightWheel,  
         )
         
-        
         this.body.add(this.chaseCamera.chaseCam)
         this.scene.add(this.carGroup)
-        this.setPhysics()
+        this.carPhysics.setPhysics(this.body, this.frontLeftWheel, this.frontRightWheel, this.backLeftWheel, this.backRightWheel)
+        this.carBody = this.carPhysics.carBody
+        this.flBody = this.carPhysics.flBody
+        this.frBody = this.carPhysics.frBody
+        this.blBody = this.carPhysics.blBody
+        this.brBody = this.carPhysics.brBody
         this.setConstraints()
-    }
-
-    setPhysics()
-    {
-        //body
-        this.carBodyShape = new CANNON.Box(
-            new CANNON.Vec3(1.5, 0.5, 2.95)
-        )
-        this.carBody = new CANNON.Body(
-            {
-                mass: 100,
-                material: this.world.defaultMaterial
-            }
-        )
-        this.carBody.addShape(
-            this.carBodyShape,
-            new CANNON.Vec3(0, 0.95, 0)
-        )
-        this.carBody.addShape(
-            new CANNON.Sphere(0.65), 
-            new CANNON.Vec3(0, 1.5, 0.0) 
-        )
-        this.carBody.position.copy(this.body.position)
-        this.world.addBody(this.carBody)
-        this.carBody.angularDamping = 0.9
-        this.carBody.allowSleep = false
-        this.objectsToUpdate.push({
-            mesh: this.body,
-            body: this.carBody
-        })
-        
-        //windows
-        this.objectsToUpdate.push({
-            mesh: this.windows,
-            body: this.carBody
-        })
-        
-        //spoiler
-        this.objectsToUpdate.push({
-            mesh: this.spoiler,
-            body: this.carBody
-        })
-
-
-        //Front Left Wheel
-        this.flShape = new CANNON.Sphere(0.5)
-        this.flBody = new CANNON.Body(
-            {
-                mass: 1,
-                material: this.world.defaultMaterial
-            }
-        )
-        this.flBody.addShape(this.flShape)
-        this.flBody.angularDamping = 0.4
-        this.flBody.applyLocalForce = 20
-        this.flBody.allowSleep = false
-        this.flBody.position.copy(this.frontLeftWheel.position)
-        this.world.addBody(this.flBody)
-        this.objectsToUpdate.push(
-            {
-                mesh: this.frontLeftWheel,
-                body: this.flBody
-            }
-        )
-        
-        //Front Right Wheel
-        this.frShape = new CANNON.Sphere(0.5)
-        this.frBody = new CANNON.Body(
-            {
-                mass: 1,
-                material: this.world.defaultMaterial
-            }
-        )
-        this.frBody.addShape(this.frShape)
-        this.frBody.angularDamping = 0.4
-        this.frBody.applyLocalForce = 20
-        this.frBody.allowSleep = false
-        this.frBody.position.copy(this.frontRightWheel.position)
-        this.world.addBody(this.frBody)  
-        this.objectsToUpdate.push(
-            {
-                mesh: this.frontRightWheel,
-                body: this.frBody
-            }
-        )
-
-        //Back Left Wheel
-        this.blShape = new CANNON.Sphere(0.5)
-        this.blBody = new CANNON.Body(
-            {
-                mass: 1,
-                material: this.world.defaultMaterial
-            }
-        )
-        this.blBody.addShape(this.blShape)
-        this.blBody.position.copy(this.backLeftWheel.position)
-        this.blBody.angularDamping = 0.4
-        this.blBody.applyLocalForce = 20
-        this.blBody.allowSleep = false
-        this.world.addBody(this.blBody)
-        this.objectsToUpdate.push(
-            {
-                mesh: this.backLeftWheel,
-                body: this.blBody
-            }
-        )
-
-        //Back Right Wheel
-        this.brShape = new CANNON.Sphere(0.5)
-        this.brBody = new CANNON.Body(
-            {
-                mass: 1,
-                material: this.world.defaultMaterial
-            }
-        )
-        this.brBody.addShape(this.brShape)
-        this.brBody.angularDamping = 0.4
-        this.brBody.applyLocalForce = 20
-        this.brBody.allowSleep = false
-        this.brBody.position.copy(this.backRightWheel.position)
-        this.world.addBody(this.brBody)
-        this.objectsToUpdate.push(
-            {
-                mesh: this.backRightWheel,
-                body: this.brBody
-            }
-        )
+        this.setCarObjects()
     }
 
     setConstraints()
@@ -262,9 +145,23 @@ export default class Car
             }
         )
         this.world.addConstraint(this.constraintBR)
-
         this.constraintBL.enableMotor()
         this.constraintBR.enableMotor()
+    }
+
+    setCarObjects()
+    {
+        //windows
+        this.objectsToUpdate.push({
+            mesh: this.windows,
+            body: this.carBody
+        })
+        
+        //spoiler
+        this.objectsToUpdate.push({
+            mesh: this.spoiler,
+            body: this.carBody
+        })
     }
 
     update()
@@ -277,7 +174,6 @@ export default class Car
 
     input()
     {
-        
         this.controls.forward()
         this.controls.backward()
         this.controls.left()
