@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import StatDebug from './Utils/Stats.js'
 import Debug from './Utils/Debug.js'
-import Loading from './Utils/Loading/Loading.js'
+import Loading from './Utils/Loading.js'
 import Sizes from './Utils/Sizes.js'
 import Time from './Utils/Time.js'
 import Physics from './Utils/Physics.js'
@@ -58,7 +58,7 @@ export default class Experience
             this.update()
         })
 
-        this.physicsDebugger()
+        //this.physicsDebugger()
     }
 
     physicsDebugger(){

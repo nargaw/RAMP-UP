@@ -94,6 +94,7 @@ export default class Resources extends EventEmitter
 
     sourceLoaded(source, file)
     {
+
         this.items[source.name] = file
 
         this.loaded++
@@ -108,7 +109,7 @@ export default class Resources extends EventEmitter
             this.timer = setInterval(() => {
                 currentNum += this.count
                 document.querySelector('.percent').innerHTML = "Loading " + currentNum + "%"
-                if(currentNum === newNum) clearInterval(this.timer)
+                if(currentNum === newNum - 1) clearInterval(this.timer)
             }, this.updateSpeed)
         }
         this.setNum(this.loadedPercent, this.toLoadPercent)
@@ -118,7 +119,7 @@ export default class Resources extends EventEmitter
             this.trigger('ready')
             window.setTimeout(() => {
                 gsap.to(this.overlayMaterial.uniforms.uAlpha, {duration: 4, value: 0})
-                this.loadingElement.innerHTML = "Loaded"
+                this.loadingElement.innerHTML = "Loading Complete"
                 this.loadingElement.classList.add('ended')
                 this.buttonsElement.classList.remove('off')
                 this.keyboardElement.classList.remove('off')

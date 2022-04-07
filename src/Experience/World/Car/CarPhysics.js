@@ -1,5 +1,3 @@
-import * as THREE from 'three'
-import Experience from '../../Experience';
 import * as CANNON from 'cannon-es'
 import Physics from '../../Utils/Physics';
 
@@ -7,8 +5,6 @@ export default class CarPhysics
 {
     constructor()
     {
-        this.experience = new Experience()
-        this.scene = this.experience.scene
         this.physics = new Physics()
         this.world = this.physics.world
         this.objectsToUpdate = []

@@ -6,6 +6,7 @@ export default class CarControls extends Controls
     constructor()
     {
         super()
+        
         this.time = new Time()
         this.deltaTime = this.time.delta
         this.controls = new Controls()

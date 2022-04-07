@@ -1,8 +1,8 @@
 import * as THREE from 'three'
 import Experience from '../../Experience';
-import * as CANNON from 'cannon-es'
 import Physics from '../../Utils/Physics';
 import CarPhysics from './CarPhysics';
+import CarConstraints from './CarConstraints';
 import CarControls from './CarControls';
 import ChaseCam from './ChaseCam'
 
@@ -25,6 +25,7 @@ export default class Car
         this.physics = new Physics()
         this.world = this.physics.world
         this.carPhysics = new CarPhysics()
+        this.constraints = new CarConstraints()
         
         this.resources = this.experience.resources
         this.resource = this.resources.items.carModel
@@ -36,9 +37,7 @@ export default class Car
         this.chaseCamera = new ChaseCam()
         
         this.objectsToUpdate = this.carPhysics.objectsToUpdate
-        
         this.setModel()
-        
     }
 
     setModel()
@@ -84,69 +83,21 @@ export default class Car
         
         this.body.add(this.chaseCamera.chaseCam)
         this.scene.add(this.carGroup)
-        this.carPhysics.setPhysics(this.body, this.frontLeftWheel, this.frontRightWheel, this.backLeftWheel, this.backRightWheel)
-        this.carBody = this.carPhysics.carBody
-        this.flBody = this.carPhysics.flBody
-        this.frBody = this.carPhysics.frBody
-        this.blBody = this.carPhysics.blBody
-        this.brBody = this.carPhysics.brBody
-        this.setConstraints()
+        this.carPhysics.setPhysics(
+            this.body, 
+            this.frontLeftWheel, 
+            this.frontRightWheel, 
+            this.backLeftWheel, 
+            this.backRightWheel
+        )
+        this.constraints.setConstraints(
+            this.carPhysics.carBody, 
+            this.carPhysics.flBody, 
+            this.carPhysics.frBody, 
+            this.carPhysics.blBody, 
+            this.carPhysics.brBody
+        )
         this.setCarObjects()
-    }
-
-    setConstraints()
-    {
-        //constraints
-        this.FLaxis = new CANNON.Vec3(1, 0, 0)
-        this.FRaxis = new CANNON.Vec3(1, 0, 0)
-        this.BLaxis = new CANNON.Vec3(1, 0, 0)
-        this.BRaxis = new CANNON.Vec3(1, 0, 0)
-
-        this.constraintFL = new CANNON.HingeConstraint(
-            this.carBody, 
-            this.flBody, 
-            {
-                pivotA: new CANNON.Vec3(-1.0, 0.45, -1.75),
-                axisA: this.FLaxis,
-                maxForce:25
-            }
-        )
-        this.world.addConstraint(this.constraintFL)
-
-        this.constraintFR = new CANNON.HingeConstraint(
-            this.carBody, 
-            this.frBody, 
-            {
-                pivotA: new CANNON.Vec3(1.0, 0.45, -1.75),
-                axisA: this.FRaxis,
-                maxForce: 25
-            }
-        )
-        this.world.addConstraint(this.constraintFR)
-
-        this.constraintBL = new CANNON.HingeConstraint(
-            this.carBody, 
-            this.blBody, 
-            {
-                pivotA: new CANNON.Vec3(-1.0, 0.45, 1.95),
-                axisA: this.BLaxis,
-                maxForce: 25
-            }
-        )
-        this.world.addConstraint(this.constraintBL)
-
-        this.constraintBR = new CANNON.HingeConstraint(
-            this.carBody, 
-            this.brBody, 
-            {
-                pivotA: new CANNON.Vec3(1.0, 0.45, 1.95),
-                axisA: this.BRaxis,
-                maxForce: 25
-            }
-        )
-        this.world.addConstraint(this.constraintBR)
-        this.constraintBL.enableMotor()
-        this.constraintBR.enableMotor()
     }
 
     setCarObjects()
@@ -154,13 +105,13 @@ export default class Car
         //windows
         this.objectsToUpdate.push({
             mesh: this.windows,
-            body: this.carBody
+            body: this.carPhysics.carBody
         })
         
         //spoiler
         this.objectsToUpdate.push({
             mesh: this.spoiler,
-            body: this.carBody
+            body: this.carPhysics.carBody
         })
     }
 
@@ -185,10 +136,10 @@ export default class Car
     motion()
     {
         this.controls.thrusting = false
-        this.constraintBL.setMotorSpeed(this.controls.forwardVel)
-        this.constraintBR.setMotorSpeed(this.controls.forwardVel)
-        this.constraintFL.axisA.z = this.controls.rightVel
-        this.constraintFR.axisA.z = this.controls.rightVel
+        this.constraints.constraintBL.setMotorSpeed(this.controls.forwardVel)
+        this.constraints.constraintBR.setMotorSpeed(this.controls.forwardVel)
+        this.constraints.constraintFL.axisA.z = this.controls.rightVel
+        this.constraints.constraintFR.axisA.z = this.controls.rightVel
     }
 
     handleChaseCam()

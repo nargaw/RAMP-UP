@@ -1,6 +1,5 @@
 import * as THREE from 'three'
-import Experience from "../../Experience";
-import gsap from 'gsap';
+import Experience from "../Experience";
 
 export default class Loading
 {

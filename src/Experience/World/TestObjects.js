@@ -57,14 +57,15 @@ export default class TestObjects
     setPhysics()
     {
         this.objectShape = new CANNON.Sphere(1)
-            this.objectBody = new CANNON.Body
-            ({
-                mass: 0.1,
-                material: this.physics.defaultMaterial
-            })
-            this.objectBody.addShape(this.objectShape)
-            this.objectBody.position.copy(this.object.position)
-            this.physics.world.addBody(this.objectBody)
+        this.objectBody = new CANNON.Body
+        ({
+            mass: 0.01,
+            material: this.physics.defaultMaterial
+        })
+        this.objectBody.addShape(this.objectShape)
+        this.objectBody.position.copy(this.object.position)
+        this.physics.world.addBody(this.objectBody)
+        this.objectBody.allowSleep = true
     }
 
     update()
