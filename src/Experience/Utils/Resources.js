@@ -100,7 +100,7 @@ export default class Resources extends EventEmitter
         this.loaded++
         this.loadedPercent = this.loaded * 100 - 100
         this.toLoadPercent = this.toLoad * 100 - 100
-        this.delay = 4000
+        this.delay = 3000
 
         this.setNum = (currentNum, newNum) => {
             if(currentNum === newNum) return

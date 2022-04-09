@@ -19,10 +19,44 @@ export default class CarControls extends Controls
         this.thrusting = false   
     }
 
+    
+    // forward()
+    // {
+    //     if (this.keyMap['w'] || this.hoverMap['3']  || this.hoverTouch['3']|| this.keyMap['ArrowUp']){
+    //         if(this.forwardVel < this.maxSpeed && this.time.delta < 15){
+    //             this.forwardVel += (this.speed / this.maxSpeed) * this.deltaTime
+    //             this.thrusting = true
+    //             if(this.rightVel > 0){
+    //                 this.rightVel -= 0.01
+    //             }
+    //             if(this.rightVel < 0){
+    //                 this.rightVel += 0.01 
+    //             }
+    //             if(this.rightVel > 0 && this.rightVel < 0.01){
+    //                 this.rightVel = 0
+    //             }  
+    //         }
+            
+    //         if(this.forwardVel < this.maxSpeed && this.time.delta >= 15){
+    //             this.maxSpeed = 30
+    //             this.forwardVel += (this.speed / this.maxSpeed) * this.deltaTime * 2
+    //             this.thrusting = true
+    //             if(this.rightVel > 0){
+    //                 this.rightVel -= 0.01
+    //             }
+    //             if(this.rightVel < 0){
+    //                 this.rightVel += 0.01 
+    //             }
+    //             if(this.rightVel > 0 && this.rightVel < 0.01){
+    //                 this.rightVel = 0
+    //             }  
+    //         }
+    //     }
+    // }
     forward()
     {
         if (this.keyMap['w'] || this.hoverMap['3']  || this.hoverTouch['3']|| this.keyMap['ArrowUp']){
-            if(this.forwardVel < this.maxSpeed && this.time.delta < 18){
+            if(this.forwardVel < this.highFPSmaxSpeed && this.time.delta < 14){
                 this.forwardVel += (this.speed / this.maxSpeed) * this.deltaTime
                 this.thrusting = true
                 if(this.rightVel > 0){
@@ -36,9 +70,24 @@ export default class CarControls extends Controls
                 }  
             }
             
-            if(this.forwardVel < this.lowFPSmaxSpeed && this.time.delta >= 18){
+            if(this.forwardVel < this.lowFPSmaxSpeed && this.time.delta > 16){
                 
-                this.forwardVel += (this.speed / this.lowFPSmaxSpeed) * this.deltaTime * 2
+                this.forwardVel += (this.speed / this.maxSpeed) * this.deltaTime
+                this.thrusting = true
+                if(this.rightVel > 0){
+                    this.rightVel -= 0.01
+                }
+                if(this.rightVel < 0){
+                    this.rightVel += 0.01 
+                }
+                if(this.rightVel > 0 && this.rightVel < 0.01){
+                    this.rightVel = 0
+                }  
+            }
+
+            if(this.forwardVel < this.maxSpeed && this.time.delta >= 14 && this.time.delta <= 16){
+                
+                this.forwardVel += (this.speed / this.maxSpeed) * this.deltaTime
                 this.thrusting = true
                 if(this.rightVel > 0){
                     this.rightVel -= 0.01

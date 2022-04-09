@@ -59,7 +59,7 @@ export default class TestObjects
         this.objectShape = new CANNON.Sphere(1)
         this.objectBody = new CANNON.Body
         ({
-            mass: 0.01,
+            mass: 0.1,
             material: this.physics.defaultMaterial
         })
         this.objectBody.addShape(this.objectShape)
