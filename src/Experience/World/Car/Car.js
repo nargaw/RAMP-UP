@@ -5,6 +5,7 @@ import CarPhysics from './CarPhysics';
 import CarConstraints from './CarConstraints';
 import CarControls from './CarControls';
 import ChaseCam from './ChaseCam'
+import CarLights from './CarLights'
 
 let instance = null
 export default class Car
@@ -35,6 +36,9 @@ export default class Car
 
         this.controls = new CarControls()
         this.chaseCamera = new ChaseCam()
+
+        this.carTailLights = new CarLights()
+        
         
         this.objectsToUpdate = this.carPhysics.objectsToUpdate
         this.setModel()
@@ -98,6 +102,7 @@ export default class Car
             this.carPhysics.brBody
         )
         this.setCarObjects()
+        this.setTailLights()
     }
 
     setCarObjects()
@@ -115,12 +120,18 @@ export default class Car
         })
     }
 
+    setTailLights()
+    {
+        this.carTailLights.rightTailLightPhysics(this.carPhysics.carBody)
+    }
+
     update()
     {
         for(this.obj of this.objectsToUpdate){
             this.obj.mesh.position.copy(this.obj.body.position)
             this.obj.mesh.quaternion.copy(this.obj.body.quaternion)
-        }   
+        }
+        this.carTailLights.update()   
     }
 
     input()
@@ -129,7 +140,7 @@ export default class Car
         this.controls.backward()
         this.controls.left()
         this.controls.right()
-        this.controls.idel()
+        this.controls.idle()
         this.controls.stablize()
     }
 

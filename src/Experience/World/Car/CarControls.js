@@ -140,7 +140,7 @@ export default class CarControls extends Controls
         }
     }
 
-    idel()
+    idle()
     {
        if (this.keyMap[' ']){
             if(this.forwardVel > 0){

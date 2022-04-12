@@ -40,5 +40,6 @@ export default class Renderer
     update()
     {
         this.instance.render(this.scene, this.camera.instance)
+        //console.log(this.instance.info.render.calls)
     }
 }
