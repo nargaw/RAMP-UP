@@ -122,7 +122,12 @@ export default class Car
 
     setTailLights()
     {
-        this.carTailLights.rightTailLightPhysics(this.carPhysics.carBody)
+        // this.carTailLights.rightTailLightPhysics(this.carPhysics.carBody)
+        // this.carGroup.add(this.carTailLights.rightTailLight)
+        // this.objectsToUpdate.push({
+        //     mesh: this.carTailLights.rightTailLight,
+        //     body: this.carTailLights.rightTailLightBody
+        // })
     }
 
     update()
@@ -130,8 +135,7 @@ export default class Car
         for(this.obj of this.objectsToUpdate){
             this.obj.mesh.position.copy(this.obj.body.position)
             this.obj.mesh.quaternion.copy(this.obj.body.quaternion)
-        }
-        this.carTailLights.update()   
+        }  
     }
 
     input()
