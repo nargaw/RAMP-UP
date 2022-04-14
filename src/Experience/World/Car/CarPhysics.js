@@ -123,9 +123,4 @@ export default class CarPhysics
             }
         )
     }
-
-    setLights(right, left)
-    {
-        
-    }
 }

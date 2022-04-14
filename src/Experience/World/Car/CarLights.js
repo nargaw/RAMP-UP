@@ -2,6 +2,7 @@ import Experience from "../../Experience";
 import * as THREE from 'three'
 import Physics from '../../Utils/Physics';
 import * as CANNON from 'cannon-es'
+import CarPhysics from "./CarPhysics";
 
 export default class CustomShader
 {
@@ -11,8 +12,11 @@ export default class CustomShader
         this.scene = this.experience.scene
         this.physics = new Physics()
         this.world = this.physics.world
+        this.carPhysics = new CarPhysics()
+        this.objectsToUpdate = this.carPhysics.objectsToUpdate
         this.setTailLightGeometry()
         this.setTailLightMaterial()
+        this.setRightTailLight()
     }
 
     // testObj()
@@ -27,7 +31,7 @@ export default class CustomShader
 
     setTailLightGeometry()
     {
-        this.tailLightGeometry = new THREE.BoxGeometry(1, 1, 1)
+        this.tailLightGeometry = new THREE.BoxGeometry(0.6, 0.2, 0.01)
     }
 
     setTailLightMaterial()
@@ -44,9 +48,15 @@ export default class CustomShader
     {
         this.rightTailLight = new THREE.Mesh(this.tailLightGeometry, this.tailLightMaterial)
         this.scene.add(this.rightTailLight)
-        this.rightTailLight.position.set(0, 10, 0)
         console.log(this.rightTailLight)
         // console.log(this.rightTailLight.position)
+    }
+
+    updatePosition(){
+        this.objectsToUpdate.push({
+            mesh: this.rightTailLight,
+            body: this.carPhysics.carBody
+        })
     }
 
     setLeftTailLight()
@@ -55,47 +65,49 @@ export default class CustomShader
         //this.scene.add(this.rightTailLight) 
     }
 
-    rightTailLightPhysics(bodyA)
-    {
+    // rightTailLightPhysics(bodyA)
+    // {
         
-        this.setRightTailLight()
-        console.log(bodyA)
-        this.bodyAPivot = new CANNON.Vec3(0, 0, 0)
-        this.rightTailLightBody = new CANNON.Body({
-            mass: 0.000001
-        })
-        this.rightTailLightBody.addShape(
-            new CANNON.Box(new CANNON.Vec3(0.5, 0.5, 0.5))
-        )
-        this.rightTailLightPivot = new CANNON.Vec3(1, 2, 1)
-        this.rightTailLightBody.position.copy(this.rightTailLight.position)
-        // this.rightDistanceConstraint = new CANNON.DistanceConstraint(
-        //     bodyA,
-        //     this.rightTailLightBody,
-        //     0.25,
-        //     0.1
-        // )
+    //     this.setRightTailLight()
+    //     console.log(bodyA)
+    //     this.bodyAPivot = new CANNON.Vec3(0, 0, 0)
+    //     this.rightTailLightBody = new CANNON.Body({
+    //         mass: 0.01
+    //     })
+    //     this.rightTailLightBody.addShape(
+    //         new CANNON.Box(new CANNON.Vec3(0.5, 0.5, 0.5))
+    //     )
+    //     this.rightTailLightPivot = new CANNON.Vec3(5, 2, 1)
+    //     this.rightTailLightBody.position.copy(this.rightTailLight.position)
+    //     // this.rightDistanceConstraint = new CANNON.DistanceConstraint(
+    //     //     bodyA,
+    //     //     this.rightTailLightBody,
+    //     //     0,
+    //     // )
+        
+    //     //this.rightDistanceConstraint.bodyB.position.set(new CANNON.Vec3(-2, 5, 5))
 
-        // this.rightTailLightConstraint = new CANNON.PointToPointConstraint(
-        //     bodyA,
-        //     this.bodyAPivot,
-        //     this.rightTailLightBody,
-        //     this.rightTailLightPivot,
-        //     0
-        // )
+    //     this.rightTailLightConstraint = new CANNON.PointToPointConstraint(
+    //         this.rightTailLightBody,
+    //         this.rightTailLightPivot,
+    //         bodyA,
+    //         this.bodyAPivot,
+            
+    //         10
+    //     )
 
-        this.rightLockConstraint = new CANNON.LockConstraint(
-            bodyA, 
-            this.rightTailLightBody, 
-            {
-                maxForce: 100, 
-            }
-        )
-        this.rightLockConstraint.pivotA = this.bodyAPivot
-        this.rightLockConstraint.pivotB = this.rightTailLightPivot
-        this.world.addBody(this.rightTailLightBody)
-        this.world.addConstraint(this.rightLockConstraint)
-    }
+    //     // this.rightLockConstraint = new CANNON.LockConstraint(
+    //     //     bodyA, 
+    //     //     this.rightTailLightBody, 
+    //     //     {
+    //     //         maxForce: 0.001, 
+    //     //     }
+    //     // )
+    //     // this.rightLockConstraint.pivotA = this.bodyAPivot
+    //     //this.rightLockConstraint.pivotB = this.rightTailLightPivot
+    //     this.world.addBody(this.rightTailLightBody)
+    //     this.world.addConstraint(this.rightTailLightConstraint)
+    // }
 
     
 
