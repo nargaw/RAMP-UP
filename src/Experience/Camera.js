@@ -12,7 +12,7 @@ export default class Camera
         this.canvas = this.experience.canvas
 
         this.setInstance()
-        this.setControls()
+        //this.setControls()
     }
 
     setInstance()
@@ -36,6 +36,6 @@ export default class Camera
 
     update()
     {
-        this.controls.update()
+        //this.controls.update()
     }
 }

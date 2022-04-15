@@ -58,7 +58,7 @@ export default class Experience
             this.update()
         })
 
-        this.physicsDebugger()
+        //this.physicsDebugger()
     }
 
     physicsDebugger(){

@@ -27,7 +27,7 @@ export default class CarPhysics
             new CANNON.Vec3(0, 0.95, 0)
         )
         this.carBody.addShape(
-            new CANNON.Sphere(0.65), 
+            new CANNON.Sphere(0.95), 
             new CANNON.Vec3(0, 1.5, 0.0) 
         )
         this.carBody.position.copy(body.position)

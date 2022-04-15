@@ -38,7 +38,8 @@ export default class Car
         this.chaseCamera = new ChaseCam()
 
         this.carTailLights = new CarLights()
-        
+        this.carTailLightMaterial = this.carTailLights.tailLightMaterial
+
         this.updateLights = []
         this.objectsToUpdate = this.carPhysics.objectsToUpdate
         this.setModel()
@@ -52,6 +53,12 @@ export default class Car
             if (child.isMesh)
             {
                 child.castShadow = true
+            }
+            if(child.name === 'Plane001_5'){
+                child.material = this.carTailLightMaterial   
+            }
+            if(child.name === 'Plane001_7'){
+                child.material = this.carTailLightMaterial    
             }
             if(child.name === 'Audi'){
                 this.body = child    
@@ -75,6 +82,7 @@ export default class Car
                 this.spoiler = child
             }
         })
+        
         this.carGroup.add(
             this.windows,
             this.spoiler,
@@ -102,7 +110,6 @@ export default class Car
             this.carPhysics.brBody
         )
         this.setCarObjects()
-        this.setTailLights()
     }
 
     setCarObjects()
@@ -120,31 +127,12 @@ export default class Car
         })
     }
 
-    setTailLights()
-    {
-        //this.carTailLights.rightTailLightPhysics(this.carPhysics.carBody)
-        this.carGroup.add(this.carTailLights.rightTailLight)
-        this.updateLights.push({
-            mesh: this.carTailLights.rightTailLight,
-            body: this.carPhysics.carBody
-        })
-        
-    }
 
     update()
     {
         for(this.obj of this.objectsToUpdate){
             this.obj.mesh.position.copy(this.obj.body.position)
             this.obj.mesh.quaternion.copy(this.obj.body.quaternion)
-        }
-        
-        for(this.obj of this.updateLights){
-            this.obj.mesh.position.x = this.obj.body.position.x + 0.75
-            this.obj.mesh.position.y = this.obj.body.position.y + 1.0
-            this.obj.mesh.position.z = this.obj.body.position.z + 2.75
-            this.obj.mesh.rotation.z = -Math.PI * 0.15
-            this.obj.mesh.rotation.x = -Math.PI * 0.05
-            this.obj.mesh.rotation.y = -Math.PI * 0.05
         }
     }
 
