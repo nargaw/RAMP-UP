@@ -1,24 +1,30 @@
 import * as THREE from 'three'
-import fragmentShader from './CarLightsShader/fragmentON.glsl'
-import fragmentShader2 from './CarLightsShader/fragmentOFF.glsl'
-import vertexShader from './CarLightsShader/vertex.glsl'
+import Experience from '../../Experience'
 
-export default class CustomShader
+export default class CarLights
 {
     constructor()
     {
-        this.setTailLightMaterial()
+        this.experience = new Experience()
+        this.scene = this.experience.scene
+        this.setTailLightMaterialOFF()
+        this.setTailLightMaterialON()
     }
 
-    setTailLightMaterial()
+    setTailLightMaterialOFF()
     {
-        this.tailLightMaterial = new THREE.ShaderMaterial(
+        this.tailLightMaterial = new THREE.MeshBasicMaterial(
             {
-                vertexShader: vertexShader,
-                fragmentShader: fragmentShader,
-                uniforms: {
-                    u_time: { value: 0 }
-                }
+                color: 0x110000
+            }
+        )
+    }
+
+    setTailLightMaterialON()
+    {
+        this.tailLightMaterial2 = new THREE.MeshBasicMaterial(
+            {
+                color: 0xff0000
             }
         )
     }

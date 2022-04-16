@@ -9,6 +9,7 @@ export default class Buildings
     {
         this.experience = new Experience()
         this.scene = this.experience.scene
+        this.debug = this.experience.debug
         this.physics = new Physics()
         this.world = this.physics.world
         this.setBuildingsGeometry()
@@ -72,4 +73,6 @@ export default class Buildings
         )
         this.world.addBody(this.buildingBody)
     }
+
+    
 }

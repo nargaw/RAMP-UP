@@ -15,20 +15,26 @@ export default class Environment
         {
             this.debugFolder = this.debug.ui.addFolder('environment')
         }
-
+        this.setAmbientLight()
         this.setSunLight()
         //this.setSunLightHelper()
-        this.setEnvironmentMap()
+        //this.setEnvironmentMap()
+    }
+
+    setAmbientLight()
+    {
+        this.ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
+        this.scene.add(this.ambientLight)
     }
 
     setSunLight()
     {
-        this.sunLight = new THREE.DirectionalLight('#ffffff', 4)
+        this.sunLight = new THREE.DirectionalLight('#ffffff', 2)
         this.sunLight.castShadow = true
         this.sunLight.shadow.camera.far = 1500
-        this.sunLight.shadow.mapSize.set(1024, 1024)
+        this.sunLight.shadow.mapSize.set(256, 256)
         this.sunLight.shadow.normalBias = 0.05
-        this.sunLight.position.set(10.5, 50, - 1.25)
+        this.sunLight.position.set(10.5, 10, - 1.25)
         this.scene.add(this.sunLight)
         this.scene.add(this.sunLight.target)
         this.targetObject = this.car.body

@@ -1,7 +1,5 @@
 import Controls from "../../Utils/Controls"
 import Time from "../../Utils/Time"
-import CarLights from './CarLights'
-import FragmentShader2 from './CarLightsShader/fragmentOFF.glsl'
 
 export default class CarControls extends Controls 
 {
@@ -18,8 +16,7 @@ export default class CarControls extends Controls
         this.maxSpeed = 30
         this.lowFPSmaxSpeed = 35
         this.speed = 0.5
-        this.thrusting = false
-        this.carLights = new CarLights()   
+        this.thrusting = false  
     }
 
     
@@ -58,7 +55,6 @@ export default class CarControls extends Controls
     // }
     forward()
     {
-        this.carLights.tailLightMaterial.fragmentShader = FragmentShader2
         if (this.keyMap['w'] || this.hoverMap['3']  || this.hoverTouch['3']|| this.keyMap['ArrowUp']){
             if(this.forwardVel < this.highFPSmaxSpeed && this.time.delta < 14){
                 this.forwardVel += (this.speed / this.maxSpeed) * this.deltaTime * 0.5

@@ -39,6 +39,7 @@ export default class Car
 
         this.carTailLights = new CarLights()
         this.carTailLightMaterial = this.carTailLights.tailLightMaterial
+        this.carTailLightMaterial2 = this.carTailLights.tailLightMaterial2
 
         this.updateLights = []
         this.objectsToUpdate = this.carPhysics.objectsToUpdate
@@ -55,7 +56,7 @@ export default class Car
                 child.castShadow = true
             }
             if(child.name === 'Plane001_5'){
-                child.material = this.carTailLightMaterial   
+                this.tailLight = child 
             }
             if(child.name === 'Plane001_7'){
                 child.material = this.carTailLightMaterial    
@@ -90,7 +91,7 @@ export default class Car
             this.frontLeftWheel, 
             this.frontRightWheel,
             this.backLeftWheel,
-            this.backRightWheel,  
+            this.backRightWheel
         )
         
         this.body.add(this.chaseCamera.chaseCam)
@@ -126,6 +127,17 @@ export default class Car
             body: this.carPhysics.carBody
         })
     }
+    
+    setTailLight()
+    {
+        if(this.controls.keyMap['w'] || this.controls.hoverMap['3']  || this.controls.hoverTouch['3']|| this.controls.keyMap['ArrowUp']){
+            //console.log('true')
+            this.tailLight.material = this.carTailLightMaterial
+        } else {
+            //console.log('false')
+            this.tailLight.material = this.carTailLightMaterial2
+        } 
+    }
 
 
     update()
@@ -148,6 +160,7 @@ export default class Car
 
     motion()
     {
+        this.setTailLight()
         this.controls.thrusting = false
         this.constraints.constraintBL.setMotorSpeed(this.controls.forwardVel)
         this.constraints.constraintBR.setMotorSpeed(this.controls.forwardVel)
