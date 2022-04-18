@@ -39,6 +39,7 @@ export default class Physics
 
     update()
     {
-        this.world.step(1/60, this.time.delta, 3 )
+        this.world.step(1/60, 16, 3 )
+        //console.log(this.time.delta)
     }
 }
