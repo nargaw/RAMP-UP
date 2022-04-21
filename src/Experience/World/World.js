@@ -21,7 +21,13 @@ export default class World
             this.buildings = new Buildings()
             this.ground = new Ground()
             this.environment = new Environment()
+            this.setAmbientLight()
         })
+    }
+
+    setAmbientLight()
+    {
+        this.environment.setAmbientLight()
     }
 
     update()

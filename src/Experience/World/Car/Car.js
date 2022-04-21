@@ -6,6 +6,7 @@ import CarConstraints from './CarConstraints';
 import CarControls from './CarControls';
 import ChaseCam from './ChaseCam'
 import CarLights from './CarLights'
+import Environment from '../Environment'
 
 let instance = null
 export default class Car
@@ -40,6 +41,9 @@ export default class Car
         this.carTailLights = new CarLights()
         this.carTailLightMaterial = this.carTailLights.tailLightMaterial
         this.carTailLightMaterial2 = this.carTailLights.tailLightMaterial2
+
+        this.environment = new Environment()
+        //this.setCarShadow()
 
         this.updateLights = []
         this.objectsToUpdate = this.carPhysics.objectsToUpdate
@@ -111,6 +115,9 @@ export default class Car
             this.carPhysics.brBody
         )
         this.setCarObjects()
+        console.log(this.body)
+        console.log(this.environment)
+        this.environment.setSunLight(this.body)
     }
 
     setCarObjects()
@@ -138,6 +145,13 @@ export default class Car
             this.tailLight.material = this.carTailLightMaterial2
         } 
     }
+
+    // setCarShadow(){
+    //     // if(this.body){
+            
+    //     // }
+        
+    // }
 
 
     update()
