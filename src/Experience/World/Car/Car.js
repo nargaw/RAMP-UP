@@ -43,7 +43,6 @@ export default class Car
         this.carTailLightMaterial2 = this.carTailLights.tailLightMaterial2
 
         this.environment = new Environment()
-        //this.setCarShadow()
 
         this.updateLights = []
         this.objectsToUpdate = this.carPhysics.objectsToUpdate
@@ -115,8 +114,6 @@ export default class Car
             this.carPhysics.brBody
         )
         this.setCarObjects()
-        console.log(this.body)
-        console.log(this.environment)
         this.environment.setSunLight(this.body)
     }
 
@@ -145,14 +142,6 @@ export default class Car
             this.tailLight.material = this.carTailLightMaterial2
         } 
     }
-
-    // setCarShadow(){
-    //     // if(this.body){
-            
-    //     // }
-        
-    // }
-
 
     update()
     {

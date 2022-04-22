@@ -2,7 +2,6 @@ import Physics from "../Utils/Physics.js"
 import * as THREE from 'three'
 import * as CANNON from 'cannon-es'
 import Experience from "../Experience.js"
-//import PhyiscsDebugger from "../Utils/PhysicsDebugger.js"
 
 export default class TestObjects
 {
@@ -11,7 +10,6 @@ export default class TestObjects
         this.physics = new Physics()
         this.experience = new Experience()
         this.scene = this.experience.scene
-        //this.physicsDebugger = new PhyiscsDebugger()
         this.objectsToUpdate = []
         this.setGeometry()
         this.setMaterial()

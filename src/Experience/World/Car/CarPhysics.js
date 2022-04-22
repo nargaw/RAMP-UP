@@ -14,7 +14,7 @@ export default class CarPhysics
     {
         //body
         this.carBodyShape = new CANNON.Box(
-            new CANNON.Vec3(1.5, 0.5, 2.95)
+            new CANNON.Vec3(1.25, 0.5, 2.95)
         )
         this.carBody = new CANNON.Body(
             {
@@ -28,7 +28,7 @@ export default class CarPhysics
         )
         this.carBody.addShape(
             new CANNON.Sphere(0.95), 
-            new CANNON.Vec3(0, 1.5, 0.0) 
+            new CANNON.Vec3(0.01, 1., 0.5) 
         )
         this.carBody.position.copy(body.position)
         this.world.addBody(this.carBody)
