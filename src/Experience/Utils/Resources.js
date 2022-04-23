@@ -98,9 +98,11 @@ export default class Resources extends EventEmitter
         this.items[source.name] = file
 
         this.loaded++
-        this.loadedPercent = this.loaded * 100 - 100
-        this.toLoadPercent = this.toLoad * 100 - 100
-        this.delay = 3000
+        console.log(this.toLoad)
+        console.log(this.loaded + 'l')
+        this.loadedPercent = Math.round(this.loaded / this.toLoad) * 100
+        this.toLoadPercent = 100
+        this.delay = 4000
 
         this.setNum = (currentNum, newNum) => {
             if(currentNum === newNum) return

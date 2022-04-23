@@ -42,15 +42,15 @@ export default class Ground
         this.groundMesh.rotation.x = -Math.PI * 0.5
         this.groundMesh.receiveShadow = true
 
-        this.groundMesh.add(
-            new THREE.LineSegments(
-                this.groundGeometry, 
-                new THREE.MeshStandardMaterial({
-                    color: 0x00ffff,
-                    wireframe: true
-                })
-            )
-        )
+        // this.groundMesh.add(
+        //     new THREE.LineSegments(
+        //         this.groundGeometry, 
+        //         new THREE.MeshStandardMaterial({
+        //             color: 0x00ffff,
+        //             wireframe: true
+        //         })
+        //     )
+        // )
         this.scene.add(this.groundMesh) 
         this.groundMesh.receiveShadow = true 
     }

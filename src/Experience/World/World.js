@@ -4,6 +4,7 @@ import Car from './Car/Car.js'
 import Ground from './Ground.js'
 import Buildings from './Buildings.js'
 import TestObjects from './TestObjects.js'
+import City from './City.js'
 
 export default class World
 {
@@ -17,8 +18,9 @@ export default class World
         {
             // Setup
             this.car = new Car()
-            this.testObjects = new TestObjects()
-            this.buildings = new Buildings()
+            //this.testObjects = new TestObjects()
+            //this.buildings = new Buildings()
+            this.city = new City()
             this.ground = new Ground()
             this.environment = new Environment()
             this.setAmbientLight()

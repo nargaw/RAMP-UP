@@ -15,6 +15,19 @@ export default class City
 
     setModel()
     {
+        this.buildingMaterial = new THREE.MeshStandardMaterial(
+            {
+                color: 0x1f1f1f
+            }
+        )
         this.model = this.resource.scene
+        this.model.traverse((child) => {
+            if (child.isMesh)
+            {
+                child.material = this.buildingMaterial
+            }
+        })
+        this.scene.add(this.model)
+        this.model.position.y = -5 
     }
 }

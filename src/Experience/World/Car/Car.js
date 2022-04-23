@@ -114,6 +114,7 @@ export default class Car
             this.carPhysics.brBody
         )
         this.setCarObjects()
+        this.carTailLights.setHeadLights(this.body)
         this.environment.setSunLight(this.body)
     }
 
@@ -130,6 +131,7 @@ export default class Car
             mesh: this.spoiler,
             body: this.carPhysics.carBody
         })
+        //
     }
     
     setTailLight()
