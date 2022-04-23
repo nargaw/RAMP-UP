@@ -17,4 +17,9 @@ export default [
         type: 'dracoModel',
         path: 'models/Car/Audi1.gltf'
     },
+    {
+        name: 'buildingModel',
+        type: 'gltfModel',
+        path: 'models/City/buildings4.glb' 
+    }
 ]
