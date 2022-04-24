@@ -21,5 +21,10 @@ export default [
         name: 'buildingModel',
         type: 'gltfModel',
         path: 'models/City/buildings4.glb' 
+    },
+    {
+        name: 'roadModel',
+        type: 'gltfModel',
+        path: 'models/Road/road.glb' 
     }
 ]

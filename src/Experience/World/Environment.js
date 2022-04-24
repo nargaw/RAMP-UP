@@ -27,7 +27,7 @@ export default class Environment
 
     setSunLight(target)
     {
-        this.sunLight = new THREE.DirectionalLight('#ffffff', 2)
+        this.sunLight = new THREE.DirectionalLight('#ffffff', 0)
         this.sunLight.castShadow = true
         this.sunLight.shadow.camera.far = 1200
         this.sunLight.shadow.mapSize.set(256, 256)
@@ -73,6 +73,48 @@ export default class Environment
     {
         this.sunLightHelper = new THREE.DirectionalLightHelper(this.sunLight, 5)
         this.scene.add(this.sunLightHelper)
+    }
+
+    setWorldLight()
+    {
+        this.worldLight = new THREE.DirectionalLight('#ffffff', 2)
+        //this.worldLight.castShadow = true
+        this.worldLight.shadow.camera.far = 1200
+        this.worldLight.shadow.mapSize.set(256, 256)
+        this.worldLight.shadow.normalBias = 0.05
+        this.worldLight.position.set(10.5, 50, - 1.25)
+        this.scene.add(this.worldLight)
+        // Debug
+        if(this.debug.active)
+        {
+            this.debugFolder
+                .add(this.worldLight, 'intensity')
+                .name('worldLightIntensity')
+                .min(0)
+                .max(10)
+                .step(0.001)
+            
+            this.debugFolder
+                .add(this.worldLight.position, 'x')
+                .name('worldLightX')
+                .min(- 5)
+                .max(5)
+                .step(0.001)
+            
+            this.debugFolder
+                .add(this.worldLight.position, 'y')
+                .name('worldLightY')
+                .min(- 5)
+                .max(5)
+                .step(0.001)
+            
+            this.debugFolder
+                .add(this.worldLight.position, 'z')
+                .name('worldLightZ')
+                .min(- 5)
+                .max(5)
+                .step(0.001)
+        }
     }
 
     setEnvironmentMap()

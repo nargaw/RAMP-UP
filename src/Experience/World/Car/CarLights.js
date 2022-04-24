@@ -31,13 +31,13 @@ export default class CarLights
 
     setHeadLights(group)
     {
-        this.headLight = new THREE.PointLight(0xffffff, 5.5 ,80.5, 1.5)
-        this.headLight2 = new THREE.PointLight(0xffffff, 5.5 ,80.5, 1.5)
-        this.headLight.position.set(-1., 1.5,-14.0)
-        this.headLight2.position.set(1., 1.5,-14.0)
+        this.headLight = new THREE.RectAreaLight(0xffffff, 5.5 ,10.5, 0.5)
+        this.headLight2 = new THREE.RectAreaLight(0xffffff, 5.5 ,10.5, 0.5)
+        this.headLight.position.set(-0.5, 2.,-5.0)
+        this.headLight2.position.set(0.5, 2.,-5.0)
         //this.scene.add(this.headLight, this.headLight2)
         //this.headLightHelper = new THREE.PointLightHelper(this.headLight, 0xff00ff, 0.3)
-        group.add(this.headLight, this.headLight2)
+        //group.add(this.headLight, this.headLight2)
         //group.add(this.headLightHelper)
     }
 }

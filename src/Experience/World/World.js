@@ -5,6 +5,7 @@ import Ground from './Ground.js'
 import Buildings from './Buildings.js'
 import TestObjects from './TestObjects.js'
 import City from './City.js'
+import Road from './Road.js'
 
 export default class World
 {
@@ -21,15 +22,22 @@ export default class World
             //this.testObjects = new TestObjects()
             //this.buildings = new Buildings()
             this.city = new City()
+            this.road = new Road()
             this.ground = new Ground()
             this.environment = new Environment()
             this.setAmbientLight()
+            this.setWorldLight()
         })
     }
 
     setAmbientLight()
     {
         this.environment.setAmbientLight()
+    }
+
+    setWorldLight()
+    {
+        this.environment.setWorldLight()
     }
 
     update()

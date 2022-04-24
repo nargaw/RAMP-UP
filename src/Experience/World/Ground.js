@@ -51,7 +51,8 @@ export default class Ground
         //         })
         //     )
         // )
-        this.scene.add(this.groundMesh) 
+        this.scene.add(this.groundMesh)
+        this.groundMesh.position.y = -0.1 
         this.groundMesh.receiveShadow = true 
     }
 
