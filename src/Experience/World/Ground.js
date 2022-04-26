@@ -19,14 +19,14 @@ export default class Ground
 
     setGeometry()
     {
-        this.groundGeometry = new THREE.PlaneBufferGeometry(1000, 1000, 50, 50)
+        this.groundGeometry = new THREE.PlaneBufferGeometry(5000, 5000, 50, 50)
     }
 
     setMaterial()
     {
         this.groundMaterial = new THREE.MeshStandardMaterial(
             {
-                color: 0x191919,
+                color: 0x101010,
                 side: THREE.DoubleSide
             }
         )

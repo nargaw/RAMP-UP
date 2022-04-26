@@ -98,8 +98,6 @@ export default class Resources extends EventEmitter
         this.items[source.name] = file
 
         this.loaded++
-        console.log(this.toLoad)
-        console.log(this.loaded + 'l')
         this.loadedPercent = Math.round(this.loaded / this.toLoad) * 100
         this.toLoadPercent = 100
         this.delay = 4000

@@ -15,9 +15,11 @@ export default class City
 
     setModel()
     {
+        this.resource.scene.scale.set(6, 6, 6)
+        this.resource.scene.rotation.y = -Math.PI * 0.5
         this.buildingMaterial = new THREE.MeshStandardMaterial(
             {
-                color: 0x1f1f1f
+                color: 0x000000
             }
         )
         this.model = this.resource.scene
@@ -28,6 +30,8 @@ export default class City
             }
         })
         this.scene.add(this.model)
-        this.model.position.y = -5 
+        this.model.position.y = -50
+        this.model.position.z = -250
+        this.model.position.x = 0
     }
 }
