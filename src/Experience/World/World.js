@@ -20,8 +20,8 @@ export default class World
             // Setup
             this.car = new Car()
             //this.testObjects = new TestObjects()
-            //this.buildings = new Buildings()
-            this.city = new City()
+            this.buildings = new Buildings()
+            //this.city = new City()
             this.ground = new Ground()
             this.road = new Road()
             this.environment = new Environment()

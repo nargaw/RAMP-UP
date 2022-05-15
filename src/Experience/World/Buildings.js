@@ -32,9 +32,9 @@ export default class Buildings
 
     setBuildingsMesh()
     {
-        for(let i = 0; i < 50; i++){
+        for(let i = 0; i < 150; i++){
             const angle = Math.random() * Math.PI * 2
-            const radius = 50 + Math.random() * 400
+            const radius = 400 + Math.random() * 800
             this.x = Math.cos(angle) * radius
             this.z = Math.sin(angle) * radius
 

@@ -23,7 +23,7 @@ export default class CarControls extends Controls
     {
         if (this.keyMap['w'] || this.hoverMap['3']  || this.hoverTouch['3']|| this.keyMap['ArrowUp']){
             if(this.forwardVel < this.highFPSmaxSpeed && this.time.delta <= 12){
-                this.forwardVel += ((this.speed / this.maxSpeed) * this.deltaTime) * 0.25
+                this.forwardVel += ((this.speed / this.maxSpeed) * this.deltaTime) * 0.15
                 this.thrusting = true
                 if(this.rightVel > 0){
                     this.rightVel -= 0.01

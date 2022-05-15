@@ -15,7 +15,7 @@ export default class Road
         this.world = this.physics.world
         
         this.setModel()
-        this.setPhysics()
+        //this.setPhysics()
     }
 
     setModel()
