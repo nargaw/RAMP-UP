@@ -98,16 +98,19 @@ export default class Resources extends EventEmitter
         this.items[source.name] = file
 
         this.loaded++
-        this.loadedPercent = Math.round(this.loaded / this.toLoad) * 100
+        this.loadedPercent = 0
         this.toLoadPercent = 100
-        this.delay = 4000
+        this.num = 0
+        this.delay = 3000
 
         this.setNum = (currentNum, newNum) => {
             if(currentNum === newNum) return
             this.updateSpeed = this.delay / Math.abs(currentNum - newNum)
             this.count = currentNum > newNum ? -1 : 1
             this.timer = setInterval(() => {
-                currentNum += this.count
+                if(currentNum <= 98){
+                    currentNum += this.count
+                }
                 document.querySelector('.percent').innerHTML = "Loading " + currentNum + "%"
                 if(currentNum === newNum - 1) clearInterval(this.timer)
             }, this.updateSpeed)
@@ -118,7 +121,7 @@ export default class Resources extends EventEmitter
         {
             this.trigger('ready')
             window.setTimeout(() => {
-                gsap.to(this.overlayMaterial.uniforms.uAlpha, {duration: 4, value: 0})
+                gsap.to(this.overlayMaterial.uniforms.uAlpha, {duration: 6, value: 0})
                 this.loadingElement.innerHTML = "Loading Complete"
                 this.loadingElement.classList.add('ended')
                 this.buttonsElement.classList.remove('off')

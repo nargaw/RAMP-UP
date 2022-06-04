@@ -31,7 +31,7 @@ export default class CarPhysics
             new CANNON.Vec3(0.01, 1., 0.5) 
         )
         body.position.set(-125, 0, 0)
-        this.carBody.position.copy(body.position)
+        // this.carBody.position.copy(body.position)
 
         this.world.addBody(this.carBody)
         this.carBody.angularDamping = 0.9
@@ -53,7 +53,7 @@ export default class CarPhysics
         this.flBody.angularDamping = 0.4
         this.flBody.applyLocalForce = 20
         this.flBody.allowSleep = false
-        this.flBody.position.copy(frontLeftWheel.position)
+        //this.flBody.position.copy(frontLeftWheel.position)
         this.world.addBody(this.flBody)
         this.objectsToUpdate.push(
             {
@@ -74,7 +74,7 @@ export default class CarPhysics
         this.frBody.angularDamping = 0.4
         this.frBody.applyLocalForce = 20
         this.frBody.allowSleep = false
-        this.frBody.position.copy(frontRightWheel.position)
+        //this.frBody.position.copy(frontRightWheel.position)
         this.world.addBody(this.frBody)  
         this.objectsToUpdate.push(
             {
@@ -92,7 +92,7 @@ export default class CarPhysics
             }
         )
         this.blBody.addShape(this.blShape)
-        this.blBody.position.copy(backLeftWheel.position)
+        //this.blBody.position.copy(backLeftWheel.position)
         this.blBody.angularDamping = 0.4
         this.blBody.applyLocalForce = 20
         this.blBody.allowSleep = false
@@ -116,7 +116,7 @@ export default class CarPhysics
         this.brBody.angularDamping = 0.4
         this.brBody.applyLocalForce = 20
         this.brBody.allowSleep = false
-        this.brBody.position.copy(backRightWheel.position)
+        //this.brBody.position.copy(backRightWheel.position)
         this.world.addBody(this.brBody)
         this.objectsToUpdate.push(
             {
