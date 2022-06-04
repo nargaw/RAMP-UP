@@ -12,9 +12,9 @@ export default class CarControls extends Controls
         this.controls = new Controls()
         this.forwardVel = 0
         this.rightVel = 0
-        this.highFPSmaxSpeed = 12
-        this.maxSpeed = 30 
-        this.lowFPSmaxSpeed = 60
+        //this.highFPSmaxSpeed = 12
+        this.maxSpeed = this.time.delta * 0.75
+        // this.lowFPSmaxSpeed = 60
         this.speed = 0.75
         this.thrusting = false  
     }
@@ -22,8 +22,8 @@ export default class CarControls extends Controls
     forward()
     {
         if (this.keyMap['w'] || this.hoverMap['3']  || this.hoverTouch['3']|| this.keyMap['ArrowUp']){
-            if(this.forwardVel < this.highFPSmaxSpeed && this.time.delta <= 12){
-                this.forwardVel += ((this.speed / this.maxSpeed) * this.deltaTime) * 0.15
+            if(this.forwardVel < this.maxSpeed){
+                this.forwardVel += 1
                 this.thrusting = true
                 if(this.rightVel > 0){
                     this.rightVel -= 0.01
@@ -36,35 +36,35 @@ export default class CarControls extends Controls
                 }  
             }
             
-            if(this.forwardVel < this.lowFPSmaxSpeed && this.time.delta > 25){
+            // if(this.forwardVel < this.lowFPSmaxSpeed && this.time.delta > 25){
                 
-                this.forwardVel += ((this.speed / this.lowFPSmaxSpeed) * this.deltaTime) * 1.75
-                this.thrusting = true
-                if(this.rightVel > 0){
-                    this.rightVel -= 0.01
-                }
-                if(this.rightVel < 0){
-                    this.rightVel += 0.01 
-                }
-                if(this.rightVel > 0 && this.rightVel < 0.01){
-                    this.rightVel = 0
-                }  
-            }
+            //     this.forwardVel += ((this.speed / this.lowFPSmaxSpeed) * this.deltaTime) * 1.75
+            //     this.thrusting = true
+            //     if(this.rightVel > 0){
+            //         this.rightVel -= 0.01
+            //     }
+            //     if(this.rightVel < 0){
+            //         this.rightVel += 0.01 
+            //     }
+            //     if(this.rightVel > 0 && this.rightVel < 0.01){
+            //         this.rightVel = 0
+            //     }  
+            // }
 
-            if(this.forwardVel < this.maxSpeed){
+            // if(this.forwardVel < this.maxSpeed){
                 
-                this.forwardVel += ((this.speed / this.maxSpeed) * this.deltaTime) * 0.75
-                this.thrusting = true
-                if(this.rightVel > 0){
-                    this.rightVel -= 0.01
-                }
-                if(this.rightVel < 0){
-                    this.rightVel += 0.01 
-                }
-                if(this.rightVel > 0 && this.rightVel < 0.01){
-                    this.rightVel = 0
-                }  
-            }
+            //     this.forwardVel += ((this.speed / this.maxSpeed) * this.deltaTime) * 0.75
+            //     this.thrusting = true
+            //     if(this.rightVel > 0){
+            //         this.rightVel -= 0.01
+            //     }
+            //     if(this.rightVel < 0){
+            //         this.rightVel += 0.01 
+            //     }
+            //     if(this.rightVel > 0 && this.rightVel < 0.01){
+            //         this.rightVel = 0
+            //     }  
+            // }
         } 
     }
 
@@ -75,10 +75,10 @@ export default class CarControls extends Controls
                 this.forwardVel -= 1
                 this.thrusting = true 
             }
-            if(this.forwardVel > -11.0 && this.time.delta > 25){
-                this.forwardVel -= 2
-                this.thrusting = true 
-            }  
+            // if(this.forwardVel > -11.0 && this.time.delta > 25){
+            //     // this.forwardVel -= 2
+            //     this.thrusting = true 
+            // }  
         }
     }
 
@@ -88,9 +88,9 @@ export default class CarControls extends Controls
             if(this.rightVel > -0.125){
                 this.rightVel -= 0.02
             }
-            if(this.rightVel > -0.125 && this.time.delta > 25){
-                this.rightVel -= 0.025
-            }  
+            // if(this.rightVel > -0.125 && this.time.delta > 25){
+            //     this.rightVel -= 0.025
+            // }  
         }
     }
 
@@ -100,9 +100,9 @@ export default class CarControls extends Controls
             if(this.rightVel < 0.125){
                 this.rightVel += 0.02
             }
-            if(this.rightVel < 0.125 && this.time.delta > 25){
-                this.rightVel += 0.025
-            }  
+            // if(this.rightVel < 0.125 && this.time.delta > 25){
+            //     this.rightVel += 0.025
+            // }  
         }
     }
 
