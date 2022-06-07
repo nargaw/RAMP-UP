@@ -26,5 +26,11 @@ export default [
         name: 'roadModel',
         type: 'gltfModel',
         path: 'models/Road/track.glb' 
-    }
+    },
+    {
+        name: 'trackModel',
+        type: 'dracoModel',
+        path: 'models/Track/track.gltf' 
+    },
+    
 ]

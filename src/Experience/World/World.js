@@ -6,6 +6,7 @@ import Buildings from './Buildings.js'
 import TestObjects from './TestObjects.js'
 import City from './City.js'
 import Road from './Road.js'
+import Track from './Track.js'
 
 export default class World
 {
@@ -23,10 +24,11 @@ export default class World
             this.buildings = new Buildings()
             //this.city = new City()
             this.ground = new Ground()
-            this.road = new Road()
+            //this.road = new Road()
             this.environment = new Environment()
             this.setAmbientLight()
             this.setWorldLight()
+            this.track = new Track()
         })
     }
 
@@ -51,7 +53,7 @@ export default class World
                 this.car.update()
                 this.car.motion()
                 this.car.input()
-                this.car.handleChaseCam()
+                //this.car.handleChaseCam()
             }
     }
 }

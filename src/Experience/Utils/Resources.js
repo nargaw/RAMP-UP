@@ -126,7 +126,7 @@ export default class Resources extends EventEmitter
                 this.loadingElement.classList.add('ended')
                 this.buttonsElement.classList.remove('off')
                 this.keyboardElement.classList.remove('off')
-            }, 4000)     
+            }, 6000)     
         }
     }
 }
