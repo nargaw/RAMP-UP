@@ -9,7 +9,7 @@ import Camera from './Camera.js'
 import Renderer from './Renderer.js'
 import World from './World/World.js'
 import Resources from './Utils/Resources.js'
-import cannonDebugger from 'cannon-es-debugger'
+import PhysicsDebugger from './Utils/PhysicsDebug.js'
 
 import sources from './sources.js'
 
@@ -40,10 +40,12 @@ export default class Experience
         this.sizes = new Sizes()
         this.time = new Time()
         this.physics = new Physics()
+        this.physicsDebugger = new PhysicsDebugger()
         this.resources = new Resources(sources)
         this.camera = new Camera()
         this.renderer = new Renderer()
         this.world = new World()
+
 
 
         // Resize event
@@ -57,20 +59,8 @@ export default class Experience
         {
             this.update()
         })
-
-        //this.physicsDebugger()
     }
 
-    physicsDebugger(){
-        cannonDebugger(
-            this.scene,
-            this.physics.world.bodies,
-            {
-                color: 0xff0000,
-                autoUpdate: true
-            }
-        )
-    }
 
     resize()
     {
@@ -84,6 +74,7 @@ export default class Experience
         this.world.update()
         this.renderer.update()
         this.physics.update()
+        this.physicsDebugger.update()
         this.stat.update() 
     }
 

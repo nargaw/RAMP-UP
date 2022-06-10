@@ -30,7 +30,7 @@ export default class CarPhysics
             new CANNON.Sphere(0.95), 
             new CANNON.Vec3(0.01, 1., 0.5) 
         )
-        body.position.set(-125, 0, 0)
+        body.position.set(100, 50, 0)
         // this.carBody.position.copy(body.position)
 
         this.world.addBody(this.carBody)
