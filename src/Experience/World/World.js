@@ -19,7 +19,7 @@ export default class World
         this.resources.on('ready', () =>
         {
             // Setup
-            this.car = new Car()
+            
             //this.testObjects = new TestObjects()
             //this.buildings = new Buildings()
             //this.city = new City()
@@ -29,6 +29,10 @@ export default class World
             this.setAmbientLight()
             this.setWorldLight()
             this.track = new Track()
+            if(this.track){
+                this.car = new Car()
+            }
+            
         })
     }
 
@@ -53,7 +57,7 @@ export default class World
                 this.car.update()
                 this.car.motion()
                 this.car.input()
-                //this.car.handleChaseCam()
+                this.car.handleChaseCam()
             }
     }
 }

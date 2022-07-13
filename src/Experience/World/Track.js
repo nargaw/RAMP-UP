@@ -12,7 +12,6 @@ export default class Track{
         this.resources = this.experience.resources
         this.resource = this.resources.items.trackModel
         this.setModel()
-        this.setPhysics()
     }
 
     setModel()
@@ -29,20 +28,23 @@ export default class Track{
         })
         console.log(this.model)
         this.scene.add(this.model)
-        
+        this.setPhysics()
     }
 
     setPhysics()
     {
         //add ground bodies
-        this.groundShape = new CANNON.Plane()
+        this.groundShape = new CANNON.Box(new CANNON.Vec3(200, 0.25, 200))
         this.groundBody = new CANNON.Body({
             mass: 0,
-            material: this.physics.defaultMaterial
+            material: this.physics.defaultContactMaterial
         })
-        this.groundBody.addShape(this.groundShape)
-        this.groundBody.quaternion.setFromEuler(Math.PI * 0.5, 0, 0)
-        this.groundBody.position.set(0, 0, 0)
+        this.groundBody.addShape(this.groundShape, new CANNON.Vec3(-10, 0.35, -2.5))
+        this.groundBody.quaternion.setFromAxisAngle(
+            new CANNON.Vec3(-1, 0, 0),
+            Math.PI 
+        )
+        //this.groundBody.position.set(0, -0.4, 0)
         this.world.addBody(this.groundBody)
     }
 }

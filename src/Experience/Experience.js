@@ -74,7 +74,7 @@ export default class Experience
         this.world.update()
         this.renderer.update()
         this.physics.update()
-        this.physicsDebugger.update()
+        //this.physicsDebugger.update()
         this.stat.update() 
     }
 
