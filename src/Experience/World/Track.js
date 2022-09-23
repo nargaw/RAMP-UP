@@ -17,7 +17,7 @@ export default class Track{
     setModel()
     {
         this.model = this.resource.scene
-        this.model.scale.set(10, 10, 10)
+        this.model.scale.set(30, 30, 30)
         this.model.position.set(0, 0, 0)
         this.model.traverse((child) => {
             if(child.isMesh)
@@ -34,12 +34,12 @@ export default class Track{
     setPhysics()
     {
         //add ground bodies
-        this.groundShape = new CANNON.Box(new CANNON.Vec3(200, 0.25, 200))
+        this.groundShape = new CANNON.Box(new CANNON.Vec3(2000, 0.75, 2000))
         this.groundBody = new CANNON.Body({
             mass: 0,
             material: this.physics.defaultContactMaterial
         })
-        this.groundBody.addShape(this.groundShape, new CANNON.Vec3(-10, 0.35, -2.5))
+        this.groundBody.addShape(this.groundShape, new CANNON.Vec3(-10, 1.1, -2.5))
         this.groundBody.quaternion.setFromAxisAngle(
             new CANNON.Vec3(-1, 0, 0),
             Math.PI 

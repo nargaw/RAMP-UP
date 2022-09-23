@@ -41,6 +41,19 @@ export default class ChaseCam
 
         if(this.debug.active)
         {
+
+            this.debugFolder
+                .add(this.birdeyeView, 'x')
+                .name('CameraX')
+                .min(-50)
+                .max(50)
+                .step(0.001)
+                .onChange(() => 
+                {
+                    this.chaseCamPivot.position.copy(this.birdeyeView)
+                })
+
+
             this.debugFolder
                 .add(this.birdeyeView, 'y')
                 .name('CameraY')

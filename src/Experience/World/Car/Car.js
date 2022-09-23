@@ -104,8 +104,9 @@ export default class Car
             this.frontLeftWheel, 
             this.frontRightWheel, 
             this.backLeftWheel, 
-            this.backRightWheel
+            this.backRightWheel 
         )
+        console.log(this.frontLeftWheel.quaternion)
         this.constraints.setConstraints(
             this.carPhysics.carBody, 
             this.carPhysics.flBody, 
