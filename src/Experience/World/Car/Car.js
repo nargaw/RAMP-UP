@@ -160,7 +160,6 @@ export default class Car
         this.controls.backward()
         this.controls.left()
         this.controls.right()
-        this.controls.idle()
         this.controls.stablize()
     }
 

@@ -32,5 +32,10 @@ export default [
         type: 'dracoModel',
         path: 'models/Track/track.gltf' 
     },
+    {
+        name: 'bronco',
+        type: 'dracoModel',
+        path: 'models/Car/bronco.glb' 
+    },
     
 ]

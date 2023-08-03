@@ -20,18 +20,19 @@ export default class World
         {
             // Setup
             
-            //this.testObjects = new TestObjects()
-            //this.buildings = new Buildings()
-            //this.city = new City()
-            //this.ground = new Ground()
-            //this.road = new Road()
+            this.testObjects = new TestObjects()
+            this.buildings = new Buildings()
+            this.city = new City()
+            this.ground = new Ground()
+            this.road = new Road()
             this.environment = new Environment()
             this.setAmbientLight()
             this.setWorldLight()
-            this.track = new Track()
-            if(this.track){
-                this.car = new Car()
-            }
+            //this.track = new Track()
+            this.car = new Car()
+            // if(this.track){
+                
+            // }
             
         })
     }
